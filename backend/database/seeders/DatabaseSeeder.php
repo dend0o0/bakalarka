@@ -39,8 +39,8 @@ class DatabaseSeeder extends Seeder
         ItemCategory::factory()->createCategory("Múka")->create();
         ItemCategory::factory()->createCategory("Ryža")->create();
         ItemCategory::factory()->createCategory("Cestoviny")->create();
-        ItemCategory::factory()->createCategory("Sladké vody")->create();
-        ItemCategory::factory()->createCategory("Minerálne vody")->create();
+        ItemCategory::factory()->createCategory("Sladené a ochutené nápoje/šťavy")->create();
+        ItemCategory::factory()->createCategory("Minerálne nápoje")->create();
         ItemCategory::factory()->createCategory("Alkohol")->create();
         ItemCategory::factory()->createCategory("Iné")->create();
 
