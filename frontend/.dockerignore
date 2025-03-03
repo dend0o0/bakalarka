@@ -1,0 +1,17 @@
+
+
+# React (Vite)
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+.git
+.gitignore
+
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Docker files
+docker-compose.override.yml

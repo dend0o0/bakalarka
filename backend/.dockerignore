@@ -1,0 +1,38 @@
+# Laravel
+/vendor
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/storage/app/uploads
+/Homestead.yaml
+/Homestead.json
+/npm-debug.log
+/yarn-error.log
+/public/mix-manifest.json
+/public/build
+/public/assets
+*/vendor
+/bc-project/node_modules
+bc-project/.env
+bc-project/storage/*
+bc-project/vendor/*
+bc-project/bootstrap/cache/*
+bc-project/.denis
+
+
+# React (Vite)
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+.git
+.gitignore
+
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Docker files
+docker-compose.override.yml
