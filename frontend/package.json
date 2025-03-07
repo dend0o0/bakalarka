@@ -1,6 +1,7 @@
 {
-  "name": "untitled15",
+  "name": "frontend",
   "private": true,
+  "homepage": "/build",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

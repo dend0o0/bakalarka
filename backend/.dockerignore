@@ -10,7 +10,7 @@
 /npm-debug.log
 /yarn-error.log
 /public/mix-manifest.json
-/public/build
+#/public/build
 /public/assets
 */vendor
 /bc-project/node_modules

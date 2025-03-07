@@ -13,6 +13,7 @@ function ShoppingList() {
     const [items, setItems] = useState([]);
     const [newItem, setNewItem] = useState("");
     const [suggestions, setSuggestions] = useState([]);
+    const [suggestionClicked, setSuggestionClicked] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
 
@@ -30,6 +31,8 @@ function ShoppingList() {
             });
     }, [id]);
 
+
+
     const handleDelete = async (id) => {
         try {
             await axios.delete(`/api/item/${id}`);
@@ -43,7 +46,10 @@ function ShoppingList() {
     }
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
+        if (event?.preventDefault) {
+            event.preventDefault();
+        }
+
 
         try {
             if (newItem.length > 30) {
@@ -90,7 +96,7 @@ function ShoppingList() {
             setItems(prevItems => {
                 return prevItems.map(item =>
                     item.id === id ? { ...item, checked: !checked } : item
-                );
+                ).sort((a, b) => a.checked - b.checked);
             });
             setErrorMessage("");
         } catch (error) {
@@ -103,6 +109,8 @@ function ShoppingList() {
         setNewItem(name);
         setSuggestions([]);
     }
+
+
 
     return (
         <div>
@@ -154,7 +162,7 @@ function ShoppingList() {
                             className="fa-solid fa-trash"></i></button>
                     </li>
 
-                ))}
+                )).sort((a, b) => b.checked - a.checked)}
             </ul>
 
         </div>

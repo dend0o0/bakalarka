@@ -1,10 +1,28 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get('/session-debug', function () {
+    return response()->json(session()->all());
+});
+
+
+
+
+Route::get('/{any}', function () {
+    $path = public_path('build/index.html');
+    if (File::exists($path)) {
+        return response()->file($path);
+    }
+    abort(404);
+})->where('any', '^(?!api|sanctum).*')->middleware('web');
+
+/*
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -25,5 +43,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
+*/
 

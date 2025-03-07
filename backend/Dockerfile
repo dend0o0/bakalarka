@@ -10,7 +10,10 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /var/www
 
-COPY . .
+COPY ./ /var/www
+
+#COPY ../frontend/dist /var/www/public/build
+
 
 RUN rm -rf /var/www/vendor
 

@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
             await axios.get("/sanctum/csrf-cookie");
             const csrfToken = axios.defaults.headers.common['X-CSRF-TOKEN'];
             await axios.post("/api/login", credentials, { withCredentials: true });
-            const { data } = await axios.get("/api/user");
+            const { data } = await axios.get("/api/user", { withCredentials: true });
             setUser(data);
         } catch (error) {
             setErrorMessage("Prihlasovacie údaje neboli správne.")
