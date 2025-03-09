@@ -6,14 +6,29 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  REGISTRY: ghcr.io
+
 jobs:
 
   build:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+
     steps:
     - uses: actions/checkout@v4
+    - name: Log in to Docker Hub
+      uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push Docker images
       uses: docker/build-push-action@v6.15.0
       with:
