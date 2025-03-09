@@ -38,6 +38,6 @@ jobs:
     - name: Deploy
       uses: wei/curl@master
       with:
-        args: -X POST -k https://portainer.docker.kst.fri.uniza.sk/api/stacks/webhooks/642916d1-ffca-4f22-aa7d-78ac5e2527d0
+        args: -X POST -k https://portainer.docker.kst.fri.uniza.sk/api/stacks/webhooks/fa343f5c-90b6-476f-98ff-0c591f546e0d
   
           
