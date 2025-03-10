@@ -29,14 +29,18 @@ function Login() {
 
     return (
         <div>
-            <h2>Prihlásenie</h2>
+
 
             <form id={"login"} onSubmit={handleLogin}>
-                {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-                <input type="email" placeholder="E-mail adresa" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                <input type="password" placeholder="Heslo" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <h2>Prihlásenie</h2>
+                {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
+                <input type="email" placeholder="E-mail adresa" value={email} onChange={(e) => setEmail(e.target.value)}
+                       required/>
+                <input type="password" placeholder="Heslo" value={password}
+                       onChange={(e) => setPassword(e.target.value)} required/>
                 <br/><br/>
-                <button type="submit" className={"add"}><i className="fa fa-key" aria-hidden="true"></i> Prihlásiť</button>
+                <button type="submit" className={"add"}><i className="fa fa-key" aria-hidden="true"></i> Prihlásiť
+                </button>
             </form>
         </div>
     );
