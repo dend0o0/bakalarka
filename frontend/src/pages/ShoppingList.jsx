@@ -110,6 +110,10 @@ function ShoppingList() {
         setSuggestions([]);
     }
 
+    const handleSort = async (id) => {
+        const response = await axios.get(`/api/sort/${id}`);
+    };
+
 
 
     return (
@@ -117,6 +121,7 @@ function ShoppingList() {
             <h2>Nákupný zoznam</h2>
             <Link to={`/${list.shop_id}`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
             {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
+            <button className={"add"} onClick={handleSort}>Zoradiť zoznam</button>
             <form onSubmit={handleSubmit} id={"list-form"} autoComplete={"off"}>
                 <div id={"list-input-container"}>
                     <input

@@ -48,12 +48,9 @@ class ShoppingListItemController extends Controller
             'shopping_list_id' => $id
         ]);
 
-
         return response()->json([
             'item' => ShoppingListItem::with(['item', 'item.category'])->find($shoppingListItem->id)
         ]);
-
-
     }
 
     /**

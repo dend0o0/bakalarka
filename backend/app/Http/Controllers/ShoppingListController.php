@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AI\CategoriesAssignment;
+use App\Algorithm\Algorithm;
 use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\ItemCategory;
@@ -51,5 +52,11 @@ class ShoppingListController extends Controller
         $list = ShoppingList::find($id);
         $list->delete();
         return response()->json(['message' => 'Zoznam bol vymazaný']);
+    }
+
+    public function sortList($id) {
+        $algorithm = new Algorithm();
+        $items = ShoppingList::with('items.item')->where('user_id', auth()->id())->find($id);
+        return response()->json(['Zoradenko' => $algorithm->test($items)]);
     }
 }

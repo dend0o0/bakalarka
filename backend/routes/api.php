@@ -31,7 +31,7 @@ Route::get('{shop_id}', [\App\Http\Controllers\ShoppingListController::class, 'i
 
 Route::delete('list/{id}', [\App\Http\Controllers\ShoppingListController::class, 'destroy'])->middleware('auth:sanctum');
 
-
+Route::get('sort/{id}', [\App\Http\Controllers\ShoppingListController::class, 'sortList'])->middleware('auth:sanctum');
 
 
 
