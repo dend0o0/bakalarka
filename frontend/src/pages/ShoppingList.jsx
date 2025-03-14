@@ -111,7 +111,14 @@ function ShoppingList() {
     }
 
     const handleSort = async (id) => {
-        const response = await axios.get(`/api/sort/${id}`);
+        try {
+            const response = await axios.get(`/api/sort/${id}`);
+            console.log("Zoradený zoznam:", response.data.items);
+            setItems(response.data.items);
+        } catch (error) {
+            console.error("Chyba pri zoraďovaní zoznamu:", error);
+            setErrorMessage("Nastala chyba pri zoraďovaní zoznamu.");
+        }
     };
 
 
@@ -119,9 +126,11 @@ function ShoppingList() {
     return (
         <div>
             <h2>Nákupný zoznam</h2>
-            <Link to={`/${list.shop_id}`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
+            <div className={"list-header"}>
+                <Link to={`/${list.shop_id}`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
+                <button className={"add"} onClick={() => handleSort(list.id)}>Zoradiť zoznam</button>
+            </div>
             {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
-            <button className={"add"} onClick={handleSort}>Zoradiť zoznam</button>
             <form onSubmit={handleSubmit} id={"list-form"} autoComplete={"off"}>
                 <div id={"list-input-container"}>
                     <input

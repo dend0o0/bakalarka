@@ -54,9 +54,9 @@ class ShoppingListController extends Controller
         return response()->json(['message' => 'Zoznam bol vymazaný']);
     }
 
-    public function sortList($id) {
+    public function sortList(Request $request, $list_id) {
         $algorithm = new Algorithm();
-        $items = ShoppingList::with('items.item')->where('user_id', auth()->id())->find($id);
-        return response()->json(['Zoradenko' => $algorithm->test($items)]);
+        $items = ShoppingList::with('items.item')->find($list_id);
+        return response()->json($algorithm->test($items));
     }
 }

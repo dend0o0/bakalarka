@@ -238,3 +238,8 @@ form#login {
   border-radius: 5px;
   background-color: #1a1a1a;
 }
+
+div.list-header {
+  display: flex;
+  justify-content: space-between;
+}
