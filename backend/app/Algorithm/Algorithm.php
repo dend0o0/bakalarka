@@ -3,6 +3,7 @@
 namespace App\Algorithm;
 
 use App\Models\ShoppingList;
+use Illuminate\Support\Facades\Auth;
 
 class Algorithm {
     public function __construct() {
@@ -19,6 +20,7 @@ class Algorithm {
                 $query->where('checked', 1);
             })
             ->where('shop_id', $shop_id)
+            ->where('user_id', Auth::user())
             ->get();
 
         $historicalOrders = [];
