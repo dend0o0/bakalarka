@@ -20,7 +20,7 @@ class Algorithm {
                 $query->where('checked', 1);
             })
             ->where('shop_id', $shop_id)
-            ->where('user_id', Auth::user())
+            ->where('user_id', Auth::id())
             ->get();
 
         $historicalOrders = [];
