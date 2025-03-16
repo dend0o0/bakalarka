@@ -12,10 +12,11 @@ class Algorithm {
     public function test($items) {
         $pocitadlo = 0;
         $porovnania = array();
+        $shop_id = $items->shop_id;
 
         $shoppingLists = ShoppingList::with('items.item')
-            ->whereHas('items', function ($query) {
-                $query->where('checked', 1);
+            ->whereHas('items', function ($query) use ($shop_id) {
+                $query->where('checked', 1)->where('shop_id', $shop_id);
             })
             ->get();
 
