@@ -17,13 +17,6 @@ class CategoriesAssignment {
     }
 
     public function assignCategory($item, $categories) {
-        ItemCategory::factory()->createCategory("Mrazené výrobky")->create();
-        $item = Item::find(56);
-        $item->delete();
-
-        $item = Item::find(62);
-        $item->delete();
-
 
         $response = $this->client->geminiFlash()->generateContent("Do ktorej z týchto kategorii patri {$item}? {$categories} Napis potom iba id danej kategorie. Ak by si nevedel, co to je za predmet, daj to vzdy ako Iné.");
         return rtrim($response->text(), "\n");
