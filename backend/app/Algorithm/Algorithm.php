@@ -91,13 +91,13 @@ class Algorithm {
         }
 
         // Tu este skusame najst spolocneho suseda
-        /*
+
         if (isset($neighbors[$item1->item_id]) && isset($neighbors[$item2->item_id])) {
             $commonNeighbors = array_intersect_key($neighbors[$item1->item_id], $neighbors[$item2->item_id]);
             if (!empty($commonNeighbors)) {
                 return count($neighbors[$item1->item_id]) > count($neighbors[$item2->item_id]);
             }
-        }*/
+        }
 
         // Porovnavanie kategorii v pripade, ze nevieme vyhodnotit konkretne tovary
 
