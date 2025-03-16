@@ -16,8 +16,9 @@ class Algorithm {
 
         $shoppingLists = ShoppingList::with('items.item')
             ->whereHas('items', function ($query) use ($shop_id) {
-                $query->where('checked', 1)->where('shop_id', $shop_id);
+                $query->where('checked', 1);
             })
+            ->where('shop_id', $shop_id)
             ->get();
 
         $historicalOrders = [];
