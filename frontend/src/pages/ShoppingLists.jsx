@@ -63,16 +63,14 @@ function ShoppingLists() {
                 {shoppingLists.map(list => (
                     <li key={list.id}>
 
-                        <Link to={`/list/${list.id}`}> <i className={"fa fa-calendar"} aria-hidden="true"></i> {dayjs(list.created_at).format("DD.MM.YYYY HH:mm")}
+                        <Link to={`/list/${list.id}`}>
+                            <i className={"fa fa-calendar"} aria-hidden="true"></i> {dayjs(list.created_at).format("DD.MM.YYYY HH:mm")}
                         </Link>
                         <button className={"delete"} onClick={() => handleDelete(list.id)}><i className="fa fa-trash" aria-hidden="true"></i> Odstrániť
                         </button>
                     </li>
 
-                ))}</ul>
-                )
-                :
-                (
+                ))}</ul> ) : (
                     <p>Ešte nie sú vytvorené žiadne nákupné zoznamy.</p>
                 )}
         </div>

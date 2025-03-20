@@ -7,18 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class Algorithm
 {
-    public function __construct()
-    {
+    private $shoppingLists;
+    private $shop_id;
+    private $items;
 
-    }
-
-    public function test($items)
+    public function __construct($items)
     {
-        $pocitadlo = 0;
-        $porovnania = array();
+        $this->items = $items;
         $shop_id = $items->shop_id;
-
-        $shoppingLists = ShoppingList::with('items.item')
+        $this->shoppingLists = ShoppingList::with('items.item')
             ->whereHas('items', function ($query) use ($shop_id) {
                 $query->where('checked', 1);
             })
@@ -26,13 +23,32 @@ class Algorithm
             ->where('user_id', Auth::id())
             ->get();
 
+        if (count($this->shoppingLists) < 3) {
+            $this->shoppingLists = ShoppingList::with('items.item')
+                ->whereHas('items', function ($query) use ($shop_id) {
+                    $query->where('checked', 1);
+                })
+                ->where('shop_id', $shop_id)
+                ->get();
+        }
+    }
+
+    public function sort()
+    {
+        $items = $this->items;
+        $pocitadlo = 0;
+        $porovnania = array();
+
+
+
+
         $historicalOrders = [];
         $categoryOrders = [];
 
         //$items->items = $items->items->filter(fn($item) => $item->checked == 0)->values();
 
 
-        foreach ($shoppingLists as $list) {
+        foreach ($this->shoppingLists as $list) {
             foreach ($list->items as $item) {
                 $historicalOrders[$item->item_id][$list->id] = $item->order;
                 $categoryOrders[$item->item->category_id][$list->id] = $item->order;

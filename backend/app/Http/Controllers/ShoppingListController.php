@@ -55,8 +55,9 @@ class ShoppingListController extends Controller
     }
 
     public function sortList(Request $request, $list_id) {
-        $algorithm = new Algorithm();
+
         $items = ShoppingList::with('items.item')->find($list_id);
-        return response()->json($algorithm->test($items));
+        $algorithm = new Algorithm($items);
+        return response()->json($algorithm->sort());
     }
 }
