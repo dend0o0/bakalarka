@@ -21,8 +21,11 @@ function ShoppingList() {
         axios.get(`/api/list/${id}`)
             .then(response => {
                 console.log("Načítané dáta:", response.data.list);
+
                 setList(response.data.list);
                 setItems(response.data.list.items);
+                console.log(items);
+                console.log(items.sort((a, b) => a.order - b.order));
 
             })
             .catch(error => {
@@ -96,7 +99,7 @@ function ShoppingList() {
             setItems(prevItems => {
                 return prevItems.map(item =>
                     item.id === id ? { ...item, checked: !checked } : item
-                ).sort((a, b) => a.checked - b.checked);
+                )
             });
             setErrorMessage("");
         } catch (error) {
@@ -162,6 +165,7 @@ function ShoppingList() {
 
             </form>
             <ul>
+
                 {items.map(item => (
                     <li className={"shopping-list-item"} key={item.id}
                         style={{textDecoration: item.checked ? "line-through" : "none"}}>
@@ -171,12 +175,12 @@ function ShoppingList() {
                             onChange={() => handleCheckboxChange(item.id, item.checked, list.shop_id, item)}
                         />
                         <p>{item.item.name}</p>
-
                         <button className={"delete"} onClick={() => handleDelete(item.id)}><i
                             className="fa-solid fa-trash"></i></button>
                     </li>
 
-                )).sort((a, b) => b.checked - a.checked)}
+                ))}
+
             </ul>
 
         </div>
