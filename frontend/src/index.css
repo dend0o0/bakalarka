@@ -19,7 +19,7 @@ body {
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #1d1e20;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -70,7 +70,7 @@ h1 {
 }
 
 input {
-  padding: 0.6em 1.2em;
+  padding: 10px 15px;
   border-radius: 10px;
 }
 
@@ -79,6 +79,7 @@ input[type="text"], input[type="password"], input[type="email"] {
   width: 100%;
   border: none;
   border-radius: 10px;
+  background-color: #323335;
 }
 
 button {
@@ -170,27 +171,30 @@ li p {
 
 
 input[type="checkbox"] {
-  width: 15px;
+  width: 20px;
   height: 20px;
   appearance: none;
-  background-color: #eee;
+  background-color: #1d1e20;
   border: 2px solid #ccc;
   display: inline-block;
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
+  padding: 2px 2px;
 }
 
 
 input[type="checkbox"]:checked {
   background-color: #4CAF50;
   border-color: #4CAF50;
+
 }
 
 input[type="checkbox"]:checked::after {
   content: "✔";
+  padding: 2px 2px;
   font-size: 12px;
-  color: white;
+  color: #1d1e20;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -199,7 +203,7 @@ input[type="checkbox"]:checked::after {
 
 div#list-input-container {
   display: flex;
-  background-color: #2563eb;
+  background-color: #323335;
   border-radius: 10px;
 }
 
