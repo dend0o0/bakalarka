@@ -66,8 +66,9 @@ class Algorithm
     {
 
 
+
         // Porovnavaju sa dva konkretne tovary, ktore sa nachadzaju v jednom zozname
-        $result = $this->compareOrders($item1, $item2, $historicalOrders);
+        $result = $this->compareOrders($item1->item_id, $item2->item_id, $historicalOrders);
 
         if (!is_null($result)) {
 
@@ -85,7 +86,7 @@ class Algorithm
 
 
         // Porovnavanie kategorii v pripade, ze nevieme vyhodnotit konkretne tovary
-        $result = $this->compareOrders($item1, $item2, $categoryOrders);
+        $result = $this->compareOrders($item1->item->category_id, $item2->item->category_id, $categoryOrders);
         if (!is_null($result)) {
             return $result;
         }
@@ -97,15 +98,15 @@ class Algorithm
 
     }
 
-    private function compareOrders($item1, $item2, $orders)
+    private function compareOrders($id1, $id2, $orders)
     {
-        if (!empty($orders[$item1->item_id]) && !empty($orders[$item2->item_id])) {
+        if (!empty($orders[$id1]) && !empty($orders[$id2])) {
             $countItem1Before = 0;
             $countItem2Before = 0;
 
-            foreach ($orders[$item1->item_id] as $listId => $order1) {
-                if (isset($orders[$item2->item_id][$listId])) {
-                    $order2 = $orders[$item2->item_id][$listId];
+            foreach ($orders[$id1] as $listId => $order1) {
+                if (isset($orders[$id2][$listId])) {
+                    $order2 = $orders[$id2][$listId];
 
                     if ($order1 > $order2) {
                         $countItem1Before++;
