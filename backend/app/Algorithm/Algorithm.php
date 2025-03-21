@@ -157,7 +157,7 @@ class Algorithm
 
                 foreach ($orders as $itemId => $otherOrders) {
 
-                    if (isset($otherOrders[$listId])/* && ($otherOrders[$listId] == $order1 - 1 || $otherOrders[$listId] == $order1 + 1)*/) {
+                    if (isset($otherOrders[$listId]) && $otherOrders[$listId] != $order1 /* && ($otherOrders[$listId] == $order1 - 1 || $otherOrders[$listId] == $order1 + 1)*/) {
                         $neighbors1[] = $itemId;
                     }
                 }
@@ -168,7 +168,7 @@ class Algorithm
 
                 foreach ($orders as $itemId => $otherOrders) {
 
-                    if (isset($otherOrders[$listId]) /*&& ($otherOrders[$listId] == $order2 - 1 || $otherOrders[$listId] == $order2 + 1)*/) {
+                    if (isset($otherOrders[$listId]) && $otherOrders[$listId] != $order2 /*&& ($otherOrders[$listId] == $order2 - 1 || $otherOrders[$listId] == $order2 + 1)*/) {
                         $neighbors2[] = $itemId;
                     }
                 }
