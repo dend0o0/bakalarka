@@ -95,6 +95,7 @@ button {
   background-color: #16161d;
   cursor: pointer;
   transition: background-color 0.25s;
+  color: white;
 }
 
 button.delete {
