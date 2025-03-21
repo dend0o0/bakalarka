@@ -13,25 +13,26 @@ function ShoppingList() {
     const [items, setItems] = useState([]);
     const [newItem, setNewItem] = useState("");
     const [suggestions, setSuggestions] = useState([]);
-    const [suggestionClicked, setSuggestionClicked] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
 
     useEffect(() => {
         axios.get(`/api/list/${id}`)
-            .then(response => {
+            .then(async response => {
                 console.log("Načítané dáta:", response.data.list);
 
                 setList(response.data.list);
                 setItems(response.data.list.items);
-                console.log(items);
-                console.log(items.sort((a, b) => a.order - b.order));
+                const sortedResponse = await axios.get(`/api/sort/${id}`);
+                setItems(sortedResponse.data.items);
+
 
             })
             .catch(error => {
                 console.error("Dáta sa nenačítali :( :", error);
                 setErrorMessage("Dáta neboli načítané.");
             });
+
     }, [id]);
 
 
