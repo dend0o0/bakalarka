@@ -147,15 +147,17 @@ class Algorithm
     private function compareNeighbors($id1, $id2, $orders)
     {
 
+
         $neighbors1 = [];
         $neighbors2 = [];
 
         if (!empty($orders[$id1]) && !empty($orders[$id2])) {
+
             foreach ($orders[$id1] as $listId => $order1) {
 
                 foreach ($orders as $itemId => $otherOrders) {
 
-                    if (isset($otherOrders[$listId]) && ($otherOrders[$listId] == $order1 - 1 || $otherOrders[$listId] == $order1 + 1)) {
+                    if (isset($otherOrders[$listId])/* && ($otherOrders[$listId] == $order1 - 1 || $otherOrders[$listId] == $order1 + 1)*/) {
                         $neighbors1[] = $itemId;
                     }
                 }
@@ -166,7 +168,7 @@ class Algorithm
 
                 foreach ($orders as $itemId => $otherOrders) {
 
-                    if (isset($otherOrders[$listId]) && ($otherOrders[$listId] == $order2 - 1 || $otherOrders[$listId] == $order2 + 1)) {
+                    if (isset($otherOrders[$listId]) /*&& ($otherOrders[$listId] == $order2 - 1 || $otherOrders[$listId] == $order2 + 1)*/) {
                         $neighbors2[] = $itemId;
                     }
                 }
@@ -199,16 +201,13 @@ class Algorithm
                                     if ($orders[$neighbor2][$listId] > $orders[$id2][$listId]) {
                                         $greater2 = true;
                                     } else if ($orders[$neighbor2][$listId] < $orders[$id2][$listId]) {
-                                        //dd($neighbor2, $item2->item_id, $historicalOrders[$neighbor2][$listId], $historicalOrders[$item2->item_id][$listId]);
                                         $smaller2 = true;
                                     }
                                 }
                                 if ($smaller1 && $greater2) {
-                                    //dd($item1->item_id, $item2->item_id);
                                     return true;
                                 }
                                 if ($smaller2 && $greater1) {
-                                    //dd($item1->item_id, $item2->item_id);
                                     return false;
                                 }
                             }
