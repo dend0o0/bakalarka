@@ -68,14 +68,10 @@ class Algorithm
 
     public function compare($item1, $item2, $historicalOrders, $categoryOrders)
     {
-
-
-
         // Porovnavaju sa dva konkretne tovary, ktore sa nachadzaju v jednom zozname
         $result = $this->compareOrders($item1->item_id, $item2->item_id, $historicalOrders);
 
         if (!is_null($result)) {
-
             return $result;
         }
 
@@ -86,7 +82,6 @@ class Algorithm
         if (!is_null($result)) {
             return $result;
         }
-
 
 
         // Porovnavanie kategorii v pripade, ze nevieme vyhodnotit konkretne tovary
@@ -100,6 +95,7 @@ class Algorithm
 
     private function compareOrders($id1, $id2, $orders)
     {
+        // Hladame zoznamy, kde su oba itemy a potom zistujeme, kolkokrat bol ktory item pred druhym
         if (!empty($orders[$id1]) && !empty($orders[$id2])) {
             $countItem1Before = 0;
             $countItem2Before = 0;
@@ -117,9 +113,7 @@ class Algorithm
             }
 
             if ($countItem1Before != 0 || $countItem2Before != 0) {
-
                     return $countItem1Before >= $countItem2Before;
-
             }
             return null;
         }
@@ -153,11 +147,12 @@ class Algorithm
                 }
             }
 
-            // Prechadzame susedov a zistujeme, ci je nejaky sused spolocny
+            // Prechadzame spolocne itemy a zistujeme, ci maju neighbors1 a neighbors2 nejaky spolocny item
             foreach ($neighbors1 as $neighbor1) {
                 if (isset($orders[$neighbor1])) {
 
                     foreach ($neighbors2 as $neighbor2) {
+                        // Tu zistujeme, ci je spolocny sused
                         if (isset($orders[$neighbor2]) && $neighbor1 == $neighbor2) {
 
                             $greater1 = false;
@@ -165,7 +160,7 @@ class Algorithm
                             $greater2 = false;
                             $smaller2 = false;
 
-                            // Porovnavaju sa predmety relativne na zaklade nejakeho predmetu
+                            // Porovnavaju sa predmety relativne na zaklade zisteneho predmetu
                             foreach ($orders[$neighbor1] as $listId => $order1) {
 
                                 if (isset($orders[$neighbor1][$listId]) && isset($orders[$id1][$listId])) {
