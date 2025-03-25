@@ -25,6 +25,10 @@ Route::get('/search', [\App\Http\Controllers\ShoppingListItemController::class, 
 
 Route::get('list/{id}', [\App\Http\Controllers\ShoppingListController::class, 'show'])->middleware('auth:sanctum');
 
+Route::get('/searchShop', [\App\Http\Controllers\ShopController::class, 'search'])->middleware('auth:sanctum');
+
+Route::post('/shop', [\App\Http\Controllers\ShopController::class, 'store'])->middleware('auth:sanctum');
+
 Route::post('{shop_id}', [\App\Http\Controllers\ShoppingListController::class, 'store'])->middleware('auth:sanctum');
 
 Route::get('{shop_id}', [\App\Http\Controllers\ShoppingListController::class, 'index'])->middleware('auth:sanctum');
@@ -32,6 +36,10 @@ Route::get('{shop_id}', [\App\Http\Controllers\ShoppingListController::class, 'i
 Route::delete('list/{id}', [\App\Http\Controllers\ShoppingListController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('sort/{list_id}', [\App\Http\Controllers\ShoppingListController::class, 'sortList'])->middleware('auth:sanctum');
+
+Route::get('shop/{id}', [\App\Http\Controllers\ShopController::class, 'show'])->middleware('auth:sanctum');
+
+Route::delete('shop/{id}', [\App\Http\Controllers\ShopController::class, 'destroy'])->middleware('auth:sanctum');
 
 
 

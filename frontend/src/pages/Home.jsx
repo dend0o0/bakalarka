@@ -19,10 +19,23 @@ function Home() {
             });
     }, []);
 
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`/api/shop/${id}`);
+            setShops(prevShops => prevShops.filter(shop => shop.id !== id));
+            setErrorMessage("");
+        } catch (error) {
+            console.error(error);
+            setErrorMessage("Nastal problém pri odstránení obchodu.");
+        }
+
+    }
+
     return (
         <div>
             <h1>Dostupné obchody</h1>
             <p>Vyberte si obchod, v ktorom chcete spravovať nákupné zoznamy.</p>
+
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
             <div id="shops-container">
                 {shops.map(shop => (
@@ -32,10 +45,17 @@ function Home() {
                         <button className={"add"}>
                             <Link to={`/${shop.id}`}><i className="fa fa-shopping-cart" aria-hidden="true"></i>  Nakupovať</Link>
                         </button>
+                        <button className={"delete"} onClick={() => handleDelete(shop.id)}>
+                            Odstrániť
+                        </button>
                     </div>
 
                 ))}
             </div>
+            <button className={"add"}>
+                <Link to={`/add_shop`}>Pridať obchod</Link>
+            </button>
+
 
         </div>
     );

@@ -7,6 +7,7 @@ import Logout from "./components/Logout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import { AuthProvider, useAuth } from "./context/AuthProvider.jsx";
 import Header from "./components/Header.jsx";
+import AddShop from "./pages/AddShop.jsx";
 
 
 function AppContent() {
@@ -25,6 +26,7 @@ function AppContent() {
                 <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
                 <Route path="/list/:id" element={<ProtectedRoute><ShoppingList /></ProtectedRoute>} />
                 <Route path="/:shop_id" element={<ProtectedRoute><ShoppingLists /></ProtectedRoute>} />
+                <Route path="/add_shop" element={<ProtectedRoute><AddShop /></ProtectedRoute>} />
             </Routes>
         </Router>
     );

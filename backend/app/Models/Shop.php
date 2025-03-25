@@ -9,5 +9,10 @@ class Shop extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'address', 'city'];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
     //
 }

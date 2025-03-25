@@ -182,8 +182,9 @@ function ShoppingList() {
                             onChange={() => handleCheckboxChange(item.id, item.checked, list.shop_id, item)}
                         />
                         <p>{item.item.name}</p>
-                        <button className={"delete"} onClick={() => handleDelete(item.id)}><i
-                            className="fa-solid fa-trash"></i></button>
+                        <button className={"delete"} onClick={() => handleDelete(item.id)}>
+                            <i className="fa-solid fa-trash"></i>
+                        </button>
                     </li>
 
                 ))}
