@@ -22,7 +22,7 @@ function ShoppingList() {
                 console.log("Načítané dáta:", response.data.list);
 
                 setList(response.data.list);
-                setItems(response.data.list.items);
+                //setItems(response.data.list.items);
                 const sortedResponse = await axios.get(`/api/sort/${id}`);
                 setItems(sortedResponse.data.items);
 

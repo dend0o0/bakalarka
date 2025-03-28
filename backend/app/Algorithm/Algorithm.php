@@ -17,19 +17,25 @@ class Algorithm
         $this->items = $items;
         $shop_id = $items->shop_id;
         $this->shoppingLists = ShoppingList::with('items.item')
+            ->withCount('items')
             ->whereHas('items', function ($query) use ($shop_id) {
                 $query->where('checked', 1);
             })
             ->where('shop_id', $shop_id)
             ->where('user_id', Auth::id())
+            ->orderBy('items_count', 'desc')
+            ->limit(50)
             ->get();
 
         if (count($this->shoppingLists) < 3) {
             $this->shoppingLists = ShoppingList::with('items.item')
+                ->withCount('items')
                 ->whereHas('items', function ($query) use ($shop_id) {
                     $query->where('checked', 1);
                 })
                 ->where('shop_id', $shop_id)
+                ->orderBy('items_count', 'desc')
+                ->limit(50)
                 ->get();
         }
     }
@@ -90,7 +96,20 @@ class Algorithm
             return $result;
         }
 
-        return true;
+        // Osetrenie toho, ked uz nevieme najst ani dvojicu kategorii
+        $unknown1 = empty($historicalOrders[$item1->item_id]) && empty($categoryOrders[$item1->item->category_id]);
+        $unknown2 = empty($historicalOrders[$item2->item_id]) && empty($categoryOrders[$item2->item->category_id]);
+
+        if ($unknown1 && !$unknown2) {
+            return false;
+        }
+
+        if ($unknown2 && !$unknown1) {
+            return true;
+        }
+
+
+        return false;
     }
 
     private function compareOrders($id1, $id2, $orders)
@@ -123,8 +142,6 @@ class Algorithm
 
     private function compareNeighbors($id1, $id2, $orders)
     {
-
-
         $neighbors1 = [];
         $neighbors2 = [];
 
