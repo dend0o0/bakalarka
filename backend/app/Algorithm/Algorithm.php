@@ -50,7 +50,9 @@ class Algorithm
         foreach ($this->shoppingLists as $list) {
             foreach ($list->items as $item) {
                 $historicalOrders[$item->item_id][$list->id] = $item->order;
-                $categoryOrders[$item->item->category_id][$list->id] = $item->order;
+                if (!isset($categoryOrders[$item->item->category_id][$list->id])) {
+                    $categoryOrders[$item->item->category_id][$list->id] = $item->order;
+                }
             }
         }
 
