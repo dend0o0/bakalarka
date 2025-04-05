@@ -45,8 +45,8 @@ function Home() {
                         <button className={"add"}>
                             <Link to={`/${shop.id}`}><i className="fa fa-shopping-cart" aria-hidden="true"></i>  Nakupovať</Link>
                         </button>
-                        <button className={"delete"} onClick={() => handleDelete(shop.id)}>
-                            Odstrániť
+                        <button className={"delete-shop"} onClick={() => handleDelete(shop.id)}>
+                            <i className="fa fa-trash" aria-hidden="true"></i>
                         </button>
                     </div>
 

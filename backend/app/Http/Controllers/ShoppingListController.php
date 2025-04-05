@@ -43,7 +43,7 @@ class ShoppingListController extends Controller
     {
         //
 
-        $list =  ShoppingList::with('items.item')->where('user_id', auth()->id())->find($id);
+        $list =  ShoppingList::with('items.item', 'shop')->where('user_id', auth()->id())->find($id);
 
         return response()->json(['list' => $list]);
     }

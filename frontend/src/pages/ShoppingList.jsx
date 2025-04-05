@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
+import dayjs from "dayjs";
 
 
 /*
@@ -29,7 +30,7 @@ function ShoppingList() {
 
             })
             .catch(error => {
-                console.error("Dáta sa nenačítali :( :", error);
+                console.error("Dáta sa nenačítali:", error);
                 setErrorMessage("Dáta neboli načítané.");
             });
 
@@ -115,7 +116,6 @@ function ShoppingList() {
             name: name
         });
         setItems([response.data.item, ...items])
-        //console.log(name);
         setNewItem("");
         setSuggestions([]);
     }
@@ -136,9 +136,14 @@ function ShoppingList() {
     return (
         <div>
             <h2>Nákupný zoznam</h2>
+            <p>
+                <i className="fa fa-map-marker" aria-hidden="true"></i> {list?.shop?.name} - {dayjs(list.created_at).format("DD.MM.YYYY")}
+            </p>
             <div className={"list-header"}>
-                <Link to={`/${list.shop_id}`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
-                <button className={"add"} onClick={() => handleSort(list.id)}>Zoradiť zoznam</button>
+            <Link to={`/${list.shop_id}`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
+                <button className={"add"} onClick={() => handleSort(list.id)}><i className={"fa fa-sort-amount-asc"} aria-hidden="true"></i> Zoradiť
+                    zoznam
+                </button>
             </div>
             {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
             <form onSubmit={handleSubmit} id={"list-form"} autoComplete={"off"}>

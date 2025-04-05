@@ -104,6 +104,11 @@ button.delete {
   font-size: 12px;
 }
 
+button.delete-shop {
+  background-color: #b33a3a;
+  border-color: #b33a3a;
+}
+
 button.add {
   background-color: #5b5fa8;
   border-color: #5b5fa8;
