@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function AddShop() {
     const [suggestions, setSuggestions] = useState([]);
@@ -8,6 +8,7 @@ function AddShop() {
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         if (event?.preventDefault) {
@@ -32,6 +33,7 @@ function AddShop() {
             setSuggestions([]);
             setShopName("");
             setErrorMessage("");
+            navigate("/");
         } catch (error) {
             console.error("Chyba pri pridávaní položky do zoznamu:", error);
             setErrorMessage("Nastala chyba pri pridávaní položky do zoznamu.")
