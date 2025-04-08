@@ -72,9 +72,10 @@ function ShoppingLists() {
                 nákupný zoznam
             </button>
             <h2>Predošlé nákupné zoznamy</h2>
-            {shoppingLists.length > 0 ? (<ul>
-                    {shoppingLists.map(list => (
-                        <div key={shoppingList.id}>
+            {shoppingLists.length > 0 ? (<div>
+                    <ul>
+                        {shoppingLists.map(list => (
+
                             <li key={list.id}>
                                 <Link to={`/list/${list.id}`}>
                                     <i className={"fa fa-calendar"}
@@ -85,32 +86,28 @@ function ShoppingLists() {
                                 </button>
                             </li>
 
-                                <div className={"pagination"} style={{marginTop: "1rem"}}>
-                                    <button
-                                        onClick={() => handlePageChange(currentPage - 1)}
-                                        disabled={currentPage === 1}
-                                    >
-                                        <i className="fa fa-chevron-left" aria-hidden="true"></i>
-                                    </button>
+                        ))}</ul>
+                    <div className={"pagination"} style={{marginTop: "1rem"}}>
+                        <button
+                            onClick={() => handlePageChange(currentPage - 1)}
+                            disabled={currentPage === 1}
+                        >
+                            <i className="fa fa-chevron-left" aria-hidden="true"></i>
+                        </button>
 
-                                    <span style={{margin: "0 10px"}}>
+                        <span style={{margin: "0 10px"}}>
                                         Strana {currentPage} z {lastPage}
                                     </span>
 
-                                    <button
-                                        onClick={() => handlePageChange(currentPage + 1)}
-                                        disabled={currentPage === lastPage}
-                                    >
-                                        <i className="fa fa-chevron-right" aria-hidden="true"></i>
-                                    </button>
-                                </div>
+                        <button
+                            onClick={() => handlePageChange(currentPage + 1)}
+                            disabled={currentPage === lastPage}
+                        >
+                            <i className="fa fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
 
-
-
-                        </div>
-
-
-                    ))}</ul>)
+                </div>)
                 :
                 (
                     <p>Ešte nie sú vytvorené žiadne nákupné zoznamy.</p>
