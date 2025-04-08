@@ -20,9 +20,9 @@ class ShoppingListController extends Controller
             ->where('user_id', auth()->id())
             ->with('user')
             ->orderBy('created_at', 'desc')
-            ->limit(20)
-            ->get();
-
+            /*->limit(20)
+            ->get();*/
+            ->paginate(10);
         return response()->json($lists);
 
     }

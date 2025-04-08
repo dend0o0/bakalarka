@@ -256,3 +256,10 @@ div.list-header {
   display: flex;
   justify-content: space-between;
 }
+
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
