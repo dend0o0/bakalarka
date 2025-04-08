@@ -84,7 +84,7 @@ function ShoppingLists() {
                                     className="fa fa-trash" aria-hidden="true"></i> Odstrániť
                                 </button>
                             </li>
-                            {shoppingLists.length > 10 ? (
+
                                 <div className={"pagination"} style={{marginTop: "1rem"}}>
                                     <button
                                         onClick={() => handlePageChange(currentPage - 1)}
@@ -104,10 +104,8 @@ function ShoppingLists() {
                                         <i className="fa fa-chevron-right" aria-hidden="true"></i>
                                     </button>
                                 </div>
-                            ) : (
-                                <div></div>
-                            )
-                            }
+
+
 
                         </div>
 
