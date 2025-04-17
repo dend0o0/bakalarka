@@ -126,16 +126,18 @@ class Algorithm
                     $order2 = $orders[$id2][$listId];
 
                     if ($order1 > $order2) {
-                        $countItem1Before++;
+                        //$countItem1Before++;
+                        return true;
                     } elseif ($order1 < $order2) {
-                        $countItem2Before++;
+                        return false;
+                        //$countItem2Before++;
                     }
                 }
             }
-
+            /*
             if ($countItem1Before != 0 || $countItem2Before != 0) {
                     return $countItem1Before >= $countItem2Before;
-            }
+            }*/
             return null;
         }
         return null;
