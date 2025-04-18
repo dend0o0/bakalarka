@@ -52,11 +52,9 @@ function Home() {
 
                 ))}
             </div>
-            <button className={"add"}>
+            <button className={"add"} id={"add-shop"}>
                 <Link to={`/add_shop`}>Pridať obchod</Link>
             </button>
-
-
         </div>
     );
 }
