@@ -256,7 +256,12 @@ form#login {
 
 div.list-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
+
+div.list-header a {
+  color: #5b5fa8;
 }
 
 .pagination {
