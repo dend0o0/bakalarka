@@ -243,8 +243,8 @@ div#suggestions-container li:hover {
 div.shop {
   background-color: #2b2b32;
   border-radius: 5px;
-  margin: 10px;
-  padding: 10px;
+  /*margin: 10px;*/
+  /*padding: 10px;*/
   text-align: center;
 }
 
