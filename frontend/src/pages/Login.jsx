@@ -12,15 +12,6 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        /*
-        try {
-            await axios.get("/sanctum/csrf-cookie", );
-            await axios.post("/api/login", { email, password }, );
-
-            navigate("/list");
-        } catch (err) {
-            setError("Nesprávne prihlasovacie údaje");
-        }*/
         await login({email, password});
         navigate("/");
     };

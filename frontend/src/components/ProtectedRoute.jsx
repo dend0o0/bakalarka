@@ -2,21 +2,30 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider.jsx";
 
-const ProtectedRoute = ({ children }) => {
+// eslint-disable-next-line react/prop-types
+const ProtectedRoute = ({ children, adminOnly = false }) => {
     const { user, isLoading } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!isLoading && !user) {
-            navigate("/login");
+        if (!isLoading) {
+            if (!user) {
+                navigate("/login");
+            } else if (adminOnly && user.name !== "admin") {
+                navigate("/");
+            }
         }
-    }, [user, isLoading, navigate]);
+    }, [user, isLoading, navigate, adminOnly]);
 
     if (isLoading) {
         return <p>Načítava sa...</p>;
     }
 
-    return user ? children : null;
+    if (!user || (adminOnly && user.name !== "admin")) {
+        return null;
+    }
+
+    return children;
 };
 
 export default ProtectedRoute;

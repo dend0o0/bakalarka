@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
             await axios.post("/api/login", credentials, { withCredentials: true });
             const { data } = await axios.get("/api/user", { withCredentials: true });
             setUser(data);
-        } catch (error) {
+        } catch {
             setErrorMessage("Prihlasovacie údaje neboli správne.")
         }
     };

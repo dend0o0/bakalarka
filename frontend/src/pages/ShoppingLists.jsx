@@ -64,7 +64,7 @@ function ShoppingLists() {
 
     return (
         <div>
-            <h2>Nákupné zoznamy</h2>
+            <h1>Nákupné zoznamy</h1>
             <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
             {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
             <p>Pre vytvorenie nového nákupu stlač tlačidlo pod týmto textom.</p>
@@ -72,7 +72,8 @@ function ShoppingLists() {
                 nákupný zoznam
             </button>
             <h2>Predošlé nákupné zoznamy</h2>
-            {shoppingLists.length > 0 ? (<div>
+            {shoppingLists.length > 0 ? (
+                <div>
                     <ul>
                         {shoppingLists.map(list => (
 
@@ -86,7 +87,8 @@ function ShoppingLists() {
                                 </button>
                             </li>
 
-                        ))}</ul>
+                        ))}
+                    </ul>
                     <div className={"pagination"} style={{marginTop: "1rem"}}>
                         <button
                             onClick={() => handlePageChange(currentPage - 1)}
@@ -96,8 +98,8 @@ function ShoppingLists() {
                         </button>
 
                         <span style={{margin: "0 10px"}}>
-                                        Strana {currentPage} z {lastPage}
-                                    </span>
+                            Strana {currentPage} z {lastPage}
+                        </span>
 
                         <button
                             onClick={() => handlePageChange(currentPage + 1)}
