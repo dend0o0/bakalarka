@@ -222,13 +222,13 @@ form#list-form {
 
 div#suggestions-container {
   background-color: #1a1a1a;
-  margin: 16px 0;
+  margin: 8px 8px;
   padding: 4px;
   border-radius: 0 0 4px 4px;
 }
 
 div#suggestions-container li {
-  padding: 0 8px;
+  padding: 8px 8px;
 }
 
 div#suggestions-container li:hover {
