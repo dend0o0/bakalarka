@@ -228,8 +228,12 @@ div#suggestions-container {
   border-radius: 0 0 4px 4px;
 }
 
+div#suggestions-container li {
+  padding: 0 8px;
+}
+
 div#suggestions-container li:hover {
-  background-color: black;
+  background-color: #0f0f0f;
   cursor: pointer;
 }
 
