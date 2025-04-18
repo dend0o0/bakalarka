@@ -196,7 +196,6 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
   background-color: #4CAF50;
   border-color: #4CAF50;
-
 }
 
 input[type="checkbox"]:checked::after {
@@ -223,7 +222,7 @@ form#list-form {
 
 div#suggestions-container {
   background-color: #1a1a1a;
-  margin: 0 8px;
+  margin: 8px 8px;
   padding: 4px;
   border-radius: 0 0 4px 4px;
 }
