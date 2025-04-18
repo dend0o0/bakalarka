@@ -248,9 +248,8 @@ div.shop {
   text-align: center;
 }
 
-button#add-shop {
-  margin: 10px;
-  padding: 10px;
+#add-shop {
+  margin: 8px;
 }
 
 form#login {
