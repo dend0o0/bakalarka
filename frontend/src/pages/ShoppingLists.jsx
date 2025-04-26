@@ -65,56 +65,59 @@ function ShoppingLists() {
     return (
         <div>
             <h1>Nákupné zoznamy</h1>
-            <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
-            {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
-            <p>Pre vytvorenie nového nákupu stlač tlačidlo pod týmto textom.</p>
-            <button className={"add"} onClick={handleNewList}><i className="fa fa-plus" aria-hidden="true"></i> Nový
-                nákupný zoznam
-            </button>
-            <h2>Predošlé nákupné zoznamy</h2>
-            {shoppingLists.length > 0 ? (
-                <div>
-                    <ul>
-                        {shoppingLists.map(list => (
+            <div className={"main-frame"}>
+                <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
+                {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
+                <p>Pre vytvorenie nového nákupu stlač tlačidlo pod týmto textom.</p>
+                <button className={"add"} onClick={handleNewList}><i className="fa fa-plus" aria-hidden="true"></i> Nový
+                    nákupný zoznam
+                </button>
+                <h2>Predošlé nákupné zoznamy</h2>
+                {shoppingLists.length > 0 ? (
+                        <div>
+                            <ul>
+                                {shoppingLists.map(list => (
 
-                            <li key={list.id}>
-                                <Link to={`/list/${list.id}`}>
-                                    <i className={"fa fa-calendar"}
-                                       aria-hidden="true"></i> {dayjs(list.created_at).format("DD.MM.YYYY HH:mm")}
-                                </Link>
-                                <button className={"delete"} onClick={() => handleDelete(list.id)}><i
-                                    className="fa fa-trash" aria-hidden="true"></i> Odstrániť
+                                    <li key={list.id}>
+                                        <Link to={`/list/${list.id}`}>
+                                            <i className={"fa fa-calendar"}
+                                               aria-hidden="true"></i> {dayjs(list.created_at).format("DD.MM.YYYY HH:mm")}
+                                        </Link>
+                                        <button className={"delete"} onClick={() => handleDelete(list.id)}><i
+                                            className="fa fa-trash" aria-hidden="true"></i> Odstrániť
+                                        </button>
+                                    </li>
+
+                                ))}
+                            </ul>
+                            <div className={"pagination"} style={{marginTop: "1rem"}}>
+                                <button
+                                    onClick={() => handlePageChange(currentPage - 1)}
+                                    disabled={currentPage === 1}
+                                >
+                                    <i className="fa fa-chevron-left" aria-hidden="true"></i>
                                 </button>
-                            </li>
 
-                        ))}
-                    </ul>
-                    <div className={"pagination"} style={{marginTop: "1rem"}}>
-                        <button
-                            onClick={() => handlePageChange(currentPage - 1)}
-                            disabled={currentPage === 1}
-                        >
-                            <i className="fa fa-chevron-left" aria-hidden="true"></i>
-                        </button>
-
-                        <span style={{margin: "0 10px"}}>
+                                <span style={{margin: "0 10px"}}>
                             Strana {currentPage} z {lastPage}
                         </span>
 
-                        <button
-                            onClick={() => handlePageChange(currentPage + 1)}
-                            disabled={currentPage === lastPage}
-                        >
-                            <i className="fa fa-chevron-right" aria-hidden="true"></i>
-                        </button>
-                    </div>
+                                <button
+                                    onClick={() => handlePageChange(currentPage + 1)}
+                                    disabled={currentPage === lastPage}
+                                >
+                                    <i className="fa fa-chevron-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
 
-                </div>)
-                :
-                (
-                    <p>Ešte nie sú vytvorené žiadne nákupné zoznamy.</p>
-                )
-            }
+                        </div>)
+                    :
+                    (
+                        <p>Ešte nie sú vytvorené žiadne nákupné zoznamy.</p>
+                    )
+                }
+            </div>
+
 
         </div>
     )
