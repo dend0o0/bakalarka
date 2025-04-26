@@ -4,10 +4,6 @@ import {Link, useParams} from "react-router-dom";
 import dayjs from "dayjs";
 
 
-/*
-axios.defaults.baseURL = "http://127.0.0.1:8000";
-axios.defaults.withCredentials = true;*/
-
 function ShoppingList() {
     const {id} = useParams();
     const [list, setList] = useState([]);
@@ -20,17 +16,12 @@ function ShoppingList() {
     useEffect(() => {
         axios.get(`/api/list/${id}`)
             .then(async response => {
-                console.log("Načítané dáta:", response.data.list);
-
                 setList(response.data.list);
-                //setItems(response.data.list.items);
                 const sortedResponse = await axios.get(`/api/sort/${id}`);
                 setItems(sortedResponse.data.items);
-
-
             })
             .catch(error => {
-                console.error("Dáta sa nenačítali:", error);
+                console.error(error);
                 setErrorMessage("Dáta neboli načítané.");
             });
 
@@ -66,15 +57,13 @@ function ShoppingList() {
                 name: newItem
             });
 
-
-            console.log("Pridaná položka:", response.data);
             setSuggestions([]);
 
             setItems([response.data.item, ...items])
             setNewItem("");
             setErrorMessage("");
         } catch (error) {
-            console.error("Chyba pri pridávaní položky do zoznamu:", error);
+            console.error(error);
             setErrorMessage("Nastala chyba pri pridávaní položky do zoznamu.")
         }
     };
@@ -136,9 +125,8 @@ function ShoppingList() {
     return (
         <div>
             <h1>{list?.shop?.name}</h1>
-            <p>{dayjs(list.created_at).format("DD.MM.YYYY")}</p>
             <div className={"list-header"}>
-            <Link to={`/${list.shop_id}`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
+                <Link to={`/${list.shop_id}`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
                 <button className={"add"} onClick={() => handleSort(list.id)}><i className={"fa fa-sort-amount-asc"} aria-hidden="true"></i> Zoradiť
                     zoznam
                 </button>

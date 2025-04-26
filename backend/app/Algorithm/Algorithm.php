@@ -86,7 +86,7 @@ class Algorithm
 
         // Porovnavanie susedov - skusame najst nejaky tovar, co je susedom s oboma porovnavanymi tovarmi v roznych zoznamoch a na zaklade toho urcime,
         // ktory by mal ist skor
-        $result = $this->compareNeighbors($item1->item_id, $item2->item_id, $historicalOrders);
+        $result = $this->compareRelative($item1->item_id, $item2->item_id, $historicalOrders);
         if (!is_null($result)) {
             return $result;
         }
@@ -144,7 +144,7 @@ class Algorithm
 
     }
 
-    private function compareNeighbors($id1, $id2, $orders)
+    private function compareRelative($id1, $id2, $orders)
     {
         $neighbors1 = [];
         $neighbors2 = [];
