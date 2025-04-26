@@ -68,27 +68,37 @@ function AddShop() {
     return (
         <div>
             <h1>Pridať nový obchod</h1>
-            <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
-            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-            <form onSubmit={handleSubmit}>
-                <input type={"text"} placeholder={"Názov obchodu"} onChange={handleSearch} value={shopName} name={"name"} required={true} /*value={shopName}*//>
-                {suggestions.length > 0 && (
-                    <div id={"suggestions-container"}>
-                        <ul>
-                            {
-                                suggestions.map(s => (
-                                    <li className="shopping-list-item" key={s.id}
-                                        onClick={() => handleSuggestionClick(s)}>
-                                        {s.name}
-                                    </li>
-                                ))}
-                        </ul>
-                    </div>
-                )}
-                <input type={"text"} placeholder={"Mesto"} value={city} onChange={(e) => setCity(e.target.value)} required={true} />
-                <input type={"text"} placeholder={"Adresa"} value={address} onChange={(e) => setAddress(e.target.value)} required={true} />
-                <button type={"submit"} className={"add"}>Pridať obchod</button>
-            </form>
+            <div className={"main-frame"}>
+                <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
+                {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+            </div>
+            <div className={"main-frame"}>
+                <form onSubmit={handleSubmit}>
+                    <input type={"text"} placeholder={"Názov obchodu"} onChange={handleSearch} value={shopName}
+                           name={"name"} required={true} /*value={shopName}*//>
+                    {suggestions.length > 0 && (
+                        <div id={"suggestions-container"}>
+                            <ul>
+                                {
+                                    suggestions.map(s => (
+                                        <li className="shopping-list-item" key={s.id}
+                                            onClick={() => handleSuggestionClick(s)}>
+                                            {s.name}
+                                        </li>
+                                    ))}
+                            </ul>
+                        </div>
+                    )}
+                    <input type={"text"} placeholder={"Mesto"} value={city} onChange={(e) => setCity(e.target.value)}
+                           required={true}/>
+                    <input type={"text"} placeholder={"Adresa"} value={address}
+                           onChange={(e) => setAddress(e.target.value)} required={true}/>
+                    <button type={"submit"} className={"add"}>Pridať obchod</button>
+                </form>
+
+            </div>
+
+
         </div>
 
 

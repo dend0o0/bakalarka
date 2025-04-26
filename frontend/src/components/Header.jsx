@@ -1,8 +1,5 @@
 import { useAuth } from "../context/AuthProvider.jsx";
-import { useNavigate } from "react-router-dom";
-
 import Logout from "./Logout.jsx";
-import AdminButton from "./AdminButton.jsx";
 
 function Header() {
     const { user } = useAuth();
