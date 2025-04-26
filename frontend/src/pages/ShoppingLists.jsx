@@ -65,13 +65,15 @@ function ShoppingLists() {
     return (
         <div>
             <h1>Nákupné zoznamy</h1>
+            <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
+            {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
             <div className={"main-frame"}>
-                <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
-                {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
                 <p>Pre vytvorenie nového nákupu stlač tlačidlo pod týmto textom.</p>
                 <button className={"add"} onClick={handleNewList}><i className="fa fa-plus" aria-hidden="true"></i> Nový
                     nákupný zoznam
                 </button>
+            </div>
+            <div className={"main-frame"}>
                 <h2>Predošlé nákupné zoznamy</h2>
                 {shoppingLists.length > 0 ? (
                         <div>
