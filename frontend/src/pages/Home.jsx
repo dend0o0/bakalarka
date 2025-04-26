@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import AdminButton from "../components/AdminButton.jsx";
 
 function Home() {
     const [shops, setShops] = useState([]);
@@ -40,6 +41,7 @@ function Home() {
             <button className={"add"} id={"add-shop"}>
                 <Link to={`/add_shop`}>Pridať obchod</Link>
             </button>
+            <AdminButton></AdminButton>
             <div id="shops-container">
                 {shops.map(shop => (
                     <div className="shop" key={shop.id}>

@@ -4,7 +4,7 @@ import {useAuth} from "../context/AuthProvider.jsx";
 
 function AdminButton() {
     const navigate = useNavigate();
-    const {user} = useAuth();
+    const { user } = useAuth();
 
     const handleClick = async () => {
         navigate("/admin");

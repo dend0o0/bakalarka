@@ -10,7 +10,6 @@ function Header() {
     return (user ? (
             <div id={"header"}>
                 <p><i className="fa fa-user" aria-hidden="true"></i> {user.name}</p>
-                <AdminButton></AdminButton>
                 <Logout></Logout>
             </div>
         ) : "");
