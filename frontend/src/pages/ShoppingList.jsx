@@ -131,37 +131,40 @@ function ShoppingList() {
                     zoznam
                 </button>
             </div>
-            {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
-            <form onSubmit={handleSubmit} id={"list-form"} autoComplete={"off"}>
-                <div id={"list-input-container"}>
-                    <input
-                        type="text"
-                        name="name"
-                        value={newItem}
-                        onChange={handleSearch}
-                        placeholder="Pridať do zoznamu"
-                        autoComplete={"off"}
-                        required
-                    />
-                    <button type="submit" className={"add"}><i className="fa-solid fa-plus"></i></button>
-                </div>
-
-                {suggestions.length > 0 && (
-                    <div id={"suggestions-container"}>
-                        <ul>
-                            {
-                                suggestions.map(s => (
-                                    <li className="shopping-list-item" key={s.id}
-                                        onClick={() => handleSuggestionClick(s.name)}>
-                                        {s.name}
-                                    </li>
-                                ))}
-                        </ul>
+            <div className={"main-frame"}>
+                {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
+                <form onSubmit={handleSubmit} id={"list-form"} autoComplete={"off"}>
+                    <div id={"list-input-container"}>
+                        <input
+                            type="text"
+                            name="name"
+                            value={newItem}
+                            onChange={handleSearch}
+                            placeholder="Pridať do zoznamu"
+                            autoComplete={"off"}
+                            required
+                        />
+                        <button type="submit" className={"add"}><i className="fa-solid fa-plus"></i></button>
                     </div>
-                )}
+
+                    {suggestions.length > 0 && (
+                        <div id={"suggestions-container"}>
+                            <ul>
+                                {
+                                    suggestions.map(s => (
+                                        <li className="shopping-list-item" key={s.id}
+                                            onClick={() => handleSuggestionClick(s.name)}>
+                                            {s.name}
+                                        </li>
+                                    ))}
+                            </ul>
+                        </div>
+                    )}
 
 
-            </form>
+                </form>
+            </div>
+
             <ul>
 
                 {items.map(item => (
