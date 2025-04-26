@@ -43,7 +43,7 @@ Route::get('shop/{id}', [\App\Http\Controllers\ShopController::class, 'show'])->
 
 Route::delete('shop/{id}', [\App\Http\Controllers\ShopController::class, 'destroy'])->middleware('auth:sanctum');
 
-Route::delete('shops/{id}', [\App\Http\Controllers\ShoppingListController::class, 'remove'])->middleware('auth:sanctum');
+Route::delete('shops/{id}', [\App\Http\Controllers\ShopController::class, 'remove'])->middleware('auth:sanctum');
 
 
 
