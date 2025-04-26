@@ -133,9 +133,7 @@ function ShoppingList() {
                         zoznam
                     </button>
                 </div>
-            </div>
 
-            <div className={"main-frame"}>
                 {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
                 <form onSubmit={handleSubmit} id={"list-form"} autoComplete={"off"}>
                     <div id={"list-input-container"}>
