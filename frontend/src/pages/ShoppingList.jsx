@@ -125,12 +125,16 @@ function ShoppingList() {
     return (
         <div>
             <h1>{list?.shop?.name}</h1>
-            <div className={"list-header"}>
-                <Link to={`/${list.shop_id}`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
-                <button className={"add"} onClick={() => handleSort(list.id)}><i className={"fa fa-sort-amount-asc"} aria-hidden="true"></i> Zoradiť
-                    zoznam
-                </button>
+            <div className={"main-frame"}>
+                <div className={"list-header"}>
+                    <Link to={`/${list.shop_id}`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
+                    <button className={"add"} onClick={() => handleSort(list.id)}><i className={"fa fa-sort-amount-asc"}
+                                                                                     aria-hidden="true"></i> Zoradiť
+                        zoznam
+                    </button>
+                </div>
             </div>
+
             <div className={"main-frame"}>
                 {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
                 <form onSubmit={handleSubmit} id={"list-form"} autoComplete={"off"}>
