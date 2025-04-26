@@ -22,7 +22,7 @@ function Admin() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`/api/item/${id}`);
+            await axios.delete(`/api/shops/${id}`);
             setShops(prevShops => prevShops.filter(item => item.id !== id));
             setErrorMessage("");
         } catch (error) {
