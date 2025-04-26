@@ -31,6 +31,12 @@ function ShoppingLists() {
             });
     }, [shop_id, currentPage]);
 
+    const handlePageChange = (newPage) => {
+        if (newPage >= 1 && newPage <= lastPage) {
+            setCurrentPage(newPage);
+        }
+    };
+
     const handleNewList = async () => {
         try {
             const response = await axios.post(`/api/${shop_id}`);
@@ -45,11 +51,6 @@ function ShoppingLists() {
 
     }
 
-    const handlePageChange = (newPage) => {
-        if (newPage >= 1 && newPage <= lastPage) {
-            setCurrentPage(newPage);
-        }
-    };
 
     const handleDelete = async (id) => {
         try {
@@ -93,7 +94,11 @@ function ShoppingLists() {
 
                                 ))}
                             </ul>
-                            <Pagination></Pagination>
+                            <Pagination
+                                currentPage={currentPage}
+                                lastPage={lastPage}
+                                onPageChange={handlePageChange}
+                            />
 
                         </div>)
                     :
