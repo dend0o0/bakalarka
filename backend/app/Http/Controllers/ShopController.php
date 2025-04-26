@@ -19,6 +19,10 @@ class ShopController extends Controller
         return response()->json($user->shops);
     }
 
+    public function indexAll() {
+        $shops = Shop::all();
+        return response()->json($shops);
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -74,5 +78,11 @@ class ShopController extends Controller
     public function search(Request $request) {
         $search = $request->query('q');
         return response()->json(Shop::where('name', 'LIKE', "%{$search}%")->limit(5)->get());
+    }
+
+    public function remove(string $id) {
+        $shop = Shop::find($id);
+        $shop->delete();
+        return response()->json("Obchod bol vymazaný");
     }
 }

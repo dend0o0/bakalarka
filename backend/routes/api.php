@@ -29,6 +29,8 @@ Route::get('/searchShop', [\App\Http\Controllers\ShopController::class, 'search'
 
 Route::post('/shop', [\App\Http\Controllers\ShopController::class, 'store'])->middleware('auth:sanctum');
 
+Route::get('/shopsAdmin', [\App\Http\Controllers\ShopController::class, 'indexAll'])->middleware('auth:sanctum');
+
 Route::post('{shop_id}', [\App\Http\Controllers\ShoppingListController::class, 'store'])->middleware('auth:sanctum');
 
 Route::get('{shop_id}', [\App\Http\Controllers\ShoppingListController::class, 'index'])->middleware('auth:sanctum');
@@ -40,6 +42,8 @@ Route::get('sort/{list_id}', [\App\Http\Controllers\ShoppingListController::clas
 Route::get('shop/{id}', [\App\Http\Controllers\ShopController::class, 'show'])->middleware('auth:sanctum');
 
 Route::delete('shop/{id}', [\App\Http\Controllers\ShopController::class, 'destroy'])->middleware('auth:sanctum');
+
+Route::delete('shops/{id}', [\App\Http\Controllers\ShoppingListController::class, 'remove'])->middleware('auth:sanctum');
 
 
 
