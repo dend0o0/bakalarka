@@ -167,25 +167,28 @@ function ShoppingList() {
                 </form>
             </div>
 
-            <ul>
+            <div className={"main-frame"}>
+                <ul>
 
-                {items.map(item => (
-                    <li className={"shopping-list-item"} key={item.id}
-                        style={{textDecoration: item.checked ? "line-through" : "none"}}>
-                        <input
-                            type="checkbox"
-                            checked={item.checked}
-                            onChange={() => handleCheckboxChange(item.id, item.checked, list.shop_id, item)}
-                        />
-                        <p>{item.item.name}</p>
-                        <button className={"delete"} onClick={() => handleDelete(item.id)}>
-                            <i className="fa-solid fa-trash"></i>
-                        </button>
-                    </li>
+                    {items.map(item => (
+                        <li className={"shopping-list-item"} key={item.id}
+                            style={{textDecoration: item.checked ? "line-through" : "none"}}>
+                            <input
+                                type="checkbox"
+                                checked={item.checked}
+                                onChange={() => handleCheckboxChange(item.id, item.checked, list.shop_id, item)}
+                            />
+                            <p>{item.item.name}</p>
+                            <button className={"delete"} onClick={() => handleDelete(item.id)}>
+                                <i className="fa-solid fa-trash"></i>
+                            </button>
+                        </li>
 
-                ))}
+                    ))}
 
-            </ul>
+                </ul>
+            </div>
+
 
         </div>
     );
