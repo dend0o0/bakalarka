@@ -3,7 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {useEffect, useState} from "react";
 import dayjs from "dayjs";
-import shoppingList from "./ShoppingList.jsx";
+import Pagination from "../components/Pagination.jsx";
+
 
 function ShoppingLists() {
     const navigate = useNavigate();
@@ -92,25 +93,7 @@ function ShoppingLists() {
 
                                 ))}
                             </ul>
-                            <div className={"pagination"} style={{marginTop: "1rem"}}>
-                                <button
-                                    onClick={() => handlePageChange(currentPage - 1)}
-                                    disabled={currentPage === 1}
-                                >
-                                    <i className="fa fa-chevron-left" aria-hidden="true"></i>
-                                </button>
-
-                                <span style={{margin: "0 10px"}}>
-                            Strana {currentPage} z {lastPage}
-                        </span>
-
-                                <button
-                                    onClick={() => handlePageChange(currentPage + 1)}
-                                    disabled={currentPage === lastPage}
-                                >
-                                    <i className="fa fa-chevron-right" aria-hidden="true"></i>
-                                </button>
-                            </div>
+                            <Pagination></Pagination>
 
                         </div>)
                     :
