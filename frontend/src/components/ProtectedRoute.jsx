@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
         if (!isLoading) {
             if (!user) {
                 navigate("/login");
-            } else if (adminOnly && user.name !== "admin") {
+            } else if (adminOnly && user.name !== "denis") {
                 navigate("/");
             }
         }
@@ -21,7 +21,7 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
         return <p>Načítava sa...</p>;
     }
 
-    if (!user || (adminOnly && user.name !== "admin")) {
+    if (!user || (adminOnly && user.name !== "denis")) {
         return null;
     }
 
