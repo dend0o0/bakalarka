@@ -9,10 +9,10 @@ function AdminButton() {
     const handleClick = async () => {
         navigate("/admin");
     };
-
+/*
     if (user.name !== "denis") {
         return null;
-    }
+    }*/
 
     return <button onClick={handleClick}><i className="fa fa-sign-out" aria-hidden="true"></i> Admin</button>;
 }
