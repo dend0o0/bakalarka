@@ -4,9 +4,6 @@ import {Link, useNavigate} from "react-router-dom";
 
 function Admin() {
     const [shops, setShops] = useState([]);
-    const [shopName, setShopName] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
@@ -22,35 +19,18 @@ function Admin() {
                 setErrorMessage("Nebolo možné načítať obchody.");
             });
     }, []);
-    const handleSubmit = async (event) => {
-        if (event?.preventDefault) {
-            event.preventDefault();
-        }
 
-
+    const handleDelete = async (id) => {
         try {
-            if (shopName.length > 30) {
-                setErrorMessage("Názov obchodu môže mať max 30 znakov");
-                return;
-            }
-
-            const response = await axios.post(`/api/shop`, {
-                name: shopName,
-                city: city,
-                address: address,
-            });
-
-
-            console.log("Pridaná položka:", response.data);
-            setSuggestions([]);
-            setShopName("");
+            await axios.delete(`/api/item/${id}`);
+            setShops(prevShops => prevShops.filter(item => item.id !== id));
             setErrorMessage("");
-            navigate("/");
         } catch (error) {
-            console.error("Chyba pri pridávaní položky do zoznamu:", error);
-            setErrorMessage("Nastala chyba pri pridávaní položky do zoznamu.")
+            console.error(error);
+            setErrorMessage("Nastal problém pri odstránení položky.");
         }
-    };
+
+    }
 
 
     return (
@@ -63,7 +43,10 @@ function Admin() {
                 {shops.length > 0 && (
                     shops.map(shop => (
                         <li key={shop.id}>
-                            ${shop.name}
+                            {shop.name}
+                            <button className={"delete"} onClick={() => handleDelete(shop.id)}><i
+                                className="fa fa-trash" aria-hidden="true"></i> Odstrániť
+                            </button>
                         </li>
                     ))
                 )}
