@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import { AuthProvider, useAuth } from "./context/AuthProvider.jsx";
 import Header from "./components/Header.jsx";
 import AddShop from "./pages/AddShop.jsx";
+import Admin from "./pages/Admin.jsx";
 
 
 function AppContent() {
@@ -27,7 +28,7 @@ function AppContent() {
                 <Route path="/list/:id" element={<ProtectedRoute><ShoppingList /></ProtectedRoute>} />
                 <Route path="/:shop_id" element={<ProtectedRoute><ShoppingLists /></ProtectedRoute>} />
                 <Route path="/add_shop" element={<ProtectedRoute><AddShop /></ProtectedRoute>} />
-                <Route path="/admin" element={<ProtectedRoute adminOnly={true}></ProtectedRoute> } />
+                <Route path="/admin" element={<ProtectedRoute adminOnly={true}><Admin/></ProtectedRoute> } />
             </Routes>
         </Router>
     );
