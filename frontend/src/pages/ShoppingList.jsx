@@ -135,6 +135,10 @@ function ShoppingList() {
                 </div>
 
                 {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
+
+            </div>
+
+            <div className={"main-frame"}>
                 <form onSubmit={handleSubmit} id={"list-form"} autoComplete={"off"}>
                     <div id={"list-input-container"}>
                         <input
@@ -165,9 +169,6 @@ function ShoppingList() {
 
 
                 </form>
-            </div>
-
-            <div className={"main-frame"}>
                 <ul>
 
                     {items.map(item => (
