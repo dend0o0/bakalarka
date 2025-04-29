@@ -1,11 +1,9 @@
+import PropTypes from "prop-types";
 
-import { useNavigate } from "react-router-dom";
-import {useAuth} from "../context/AuthProvider.jsx";
-import {useState} from "react";
 
-function AdminButton({ currentPage, lastPage, onPageChange }) {
+function Pagination({ currentPage, lastPage, onPageChange }) {
     return (
-        <div className={"pagination"} style={{marginTop: "1rem"}}>
+        <div className={"pagination"}>
             <button
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -13,9 +11,7 @@ function AdminButton({ currentPage, lastPage, onPageChange }) {
                 <i className="fa fa-chevron-left" aria-hidden="true"></i>
             </button>
 
-            <span style={{margin: "0 10px"}}>
-                            Strana {currentPage} z {lastPage}
-                        </span>
+            <span style={{margin: "0 10px"}}>Strana {currentPage} z {lastPage}</span>
 
             <button
                 onClick={() => onPageChange(currentPage + 1)}
@@ -29,4 +25,11 @@ function AdminButton({ currentPage, lastPage, onPageChange }) {
 
 }
 
-export default AdminButton;
+export default Pagination;
+
+Pagination.propTypes = {
+    lastPage: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    onPageChange: PropTypes.func.isRequired,
+};
+
