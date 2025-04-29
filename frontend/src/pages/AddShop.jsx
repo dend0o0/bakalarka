@@ -1,6 +1,7 @@
 import axios from "axios";
 import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import Suggestions from "../components/Suggestions.jsx";
 
 function AddShop() {
     const [suggestions, setSuggestions] = useState([]);
@@ -76,19 +77,7 @@ function AddShop() {
                 <form onSubmit={handleSubmit}>
                     <input type={"text"} placeholder={"Názov obchodu"} onChange={handleSearch} value={shopName}
                            name={"name"} required={true} /*value={shopName}*//>
-                    {suggestions.length > 0 && (
-                        <div id={"suggestions-container"}>
-                            <ul>
-                                {
-                                    suggestions.map(s => (
-                                        <li className="shopping-list-item" key={s.id}
-                                            onClick={() => handleSuggestionClick(s)}>
-                                            {s.name}
-                                        </li>
-                                    ))}
-                            </ul>
-                        </div>
-                    )}
+                    <Suggestions suggestions={suggestions} onClick={handleSuggestionClick}/>
                     <input type={"text"} placeholder={"Mesto"} value={city} onChange={(e) => setCity(e.target.value)}
                            required={true}/>
                     <input type={"text"} placeholder={"Adresa"} value={address}
