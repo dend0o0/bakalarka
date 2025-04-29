@@ -70,11 +70,13 @@ function ShoppingLists() {
 
             <div className={"main-frame"}>
                 {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
-                <div className={"list-header"}></div>
-                <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
-                <button className={"add"} onClick={handleNewList}><i className="fa fa-plus" aria-hidden="true"></i> Nový
-                    nákupný zoznam
-                </button>
+                <div className={"list-header"}>
+                    <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
+                    <button className={"add"} onClick={handleNewList}><i className="fa fa-plus" aria-hidden="true"></i> Nový
+                        nákupný zoznam
+                    </button>
+                </div>
+
             </div>
             <div className={"main-frame"}>
                 <h2>Predošlé nákupné zoznamy</h2>
@@ -95,11 +97,7 @@ function ShoppingLists() {
 
                                 ))}
                             </ul>
-                            <Pagination
-                                currentPage={currentPage}
-                                lastPage={lastPage}
-                                onPageChange={handlePageChange}
-                            />
+
 
                         </div>)
                     :
@@ -107,6 +105,13 @@ function ShoppingLists() {
                         <p>Ešte nie sú vytvorené žiadne nákupné zoznamy.</p>
                     )
                 }
+            </div>
+            <div className={"main-frame"}>
+                <Pagination
+                    currentPage={currentPage}
+                    lastPage={lastPage}
+                    onPageChange={handlePageChange}
+                />
             </div>
 
 
