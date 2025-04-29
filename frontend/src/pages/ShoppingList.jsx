@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
-import dayjs from "dayjs";
-import Suggestions from "../components/Suggestions.jsx";
+import NewItemForm from "../components/NewItemForm.jsx";
 
 
 function ShoppingList() {
@@ -85,7 +84,7 @@ function ShoppingList() {
         }
 
     };
-    const handleCheckboxChange = async (id, checked, shop_id, item) => {
+    const handleCheckboxChange = async (id, checked, shop_id) => {
         try {
             const response = await axios.patch(`/api/item/${id}`, { checked: !checked, shop_id, id});
             setItems(prevItems => {
@@ -140,23 +139,7 @@ function ShoppingList() {
             </div>
 
             <div className={"main-frame"}>
-                <form onSubmit={handleSubmit} id={"list-form"} autoComplete={"off"}>
-                    <div id={"list-input-container"}>
-                        <input
-                            type="text"
-                            name="name"
-                            value={newItem}
-                            onChange={handleSearch}
-                            placeholder="Pridať do zoznamu"
-                            autoComplete={"off"}
-                            required
-                        />
-                        <button type="submit" className={"add"}><i className="fa-solid fa-plus"></i></button>
-                    </div>
-
-                    <Suggestions suggestions={suggestions} onClick={handleSuggestionClick}/>
-
-                </form>
+                <NewItemForm onSuggestionClick={handleSuggestionClick} newItem={newItem} onSubmit={handleSubmit} onSearch={handleSearch} suggestions={suggestions}/>
                 <ul>
 
                     {items.map(item => (

@@ -1,9 +1,6 @@
-import { useAuth } from "../context/AuthProvider.jsx";
 import PropTypes from "prop-types";
-import Logout from "./Logout.jsx";
 
 function Suggestions({ suggestions, onClick }) {
-    const { user } = useAuth();
     if (suggestions.length > 0) {
         return (
             <div id={"suggestions-container"}>
