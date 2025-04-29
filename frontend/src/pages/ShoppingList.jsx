@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
 import dayjs from "dayjs";
+import Suggestions from "../components/Suggestions.jsx";
 
 
 function ShoppingList() {
@@ -153,20 +154,7 @@ function ShoppingList() {
                         <button type="submit" className={"add"}><i className="fa-solid fa-plus"></i></button>
                     </div>
 
-                    {suggestions.length > 0 && (
-                        <div id={"suggestions-container"}>
-                            <ul>
-                                {
-                                    suggestions.map(s => (
-                                        <li className="shopping-list-item" key={s.id}
-                                            onClick={() => handleSuggestionClick(s.name)}>
-                                            {s.name}
-                                        </li>
-                                    ))}
-                            </ul>
-                        </div>
-                    )}
-
+                    <Suggestions suggestions={suggestions} onClick={handleSuggestionClick}/>
 
                 </form>
                 <ul>
