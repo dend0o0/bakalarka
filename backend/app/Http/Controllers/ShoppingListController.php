@@ -13,23 +13,21 @@ use Illuminate\Http\Request;
 
 class ShoppingListController extends Controller
 {
+    // Ziskanie nakupnych zoznamov pouzivatela v obchode
     public function index($shop_id)
     {
-        //
         $lists = ShoppingList::where('shop_id', $shop_id)
             ->where('user_id', auth()->id())
             ->with('user')
             ->orderBy('created_at', 'desc')
-            /*->limit(20)
-            ->get();*/
             ->paginate(10);
         return response()->json($lists);
 
     }
-    //
+
+    // Vytvorenie nakupneho zoznamu
     public function store(Request $request, $shop_id)
     {
-        //
         $shoppingList = ShoppingList::create([
             'shop_id' => $shop_id,
             'user_id' => auth()->id(),
@@ -39,21 +37,21 @@ class ShoppingListController extends Controller
 
     }
 
+    // Ziskanie nakupneho zoznamu aj s polozkami
     public function show(string $id)
     {
-        //
-
         $list =  ShoppingList::with('items.item', 'shop')->where('user_id', auth()->id())->find($id);
-
         return response()->json(['list' => $list]);
     }
 
+    // Vymazanie zoznamu
     public function destroy(string $id) {
         $list = ShoppingList::find($id);
         $list->delete();
         return response()->json(['message' => 'Zoznam bol vymazaný']);
     }
 
+    // Zoradenie poloziek v zozname
     public function sortList(Request $request, $list_id) {
 
         $items = ShoppingList::with('items.item')->find($list_id);

@@ -12,9 +12,7 @@ use App\AI\CategoriesAssignment;
 
 class ShoppingListItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         //
@@ -25,23 +23,29 @@ class ShoppingListItemController extends Controller
      * Store a newly created resource in storage.
      */
 
+    // Vyhladanie polozky
     public function search(Request $request) {
         $search = $request->query('q');
         return Item::where('name', 'LIKE', "%{$search}%")->limit(5)->get();
     }
 
+    /**
+     * Ulozenie polozky vratane overenia existencie
+     */
     public function store(Request $request, $id)
     {
-        $categorizer = new CategoriesAssignment();
-        $categories = ItemCategory::all();
-        //
-        //$item = Item::firstOrCreate(['name' => $request->name, 'category_id' => $categorizer->assignCategory($request->name, $categories)]);
-        $itemId = Item::upsert(
-            [['name' => $request->name, 'category_id' => $categorizer->assignCategory($request->name, $categories)]],
-            ['name'],
-            ['category_id']
-        );
+
         $item = Item::where('name', $request->name)->first();
+
+        if (!$item) {
+            $categorizer = new CategoriesAssignment();
+            $categories = ItemCategory::all();
+
+            $item = Item::create([
+                'name' => $request->name,
+                'category_id' => $categorizer->assignCategory($request->name, $categories),
+            ]);
+        }
 
         $shoppingListItem = ShoppingListItem::create([
             'item_id' => $item->id,

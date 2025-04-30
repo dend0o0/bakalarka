@@ -118,8 +118,7 @@ class Algorithm
     {
         // Hladame zoznamy, kde su oba itemy a potom zistujeme, kolkokrat bol ktory item pred druhym
         if (!empty($orders[$id1]) && !empty($orders[$id2])) {
-            $countItem1Before = 0;
-            $countItem2Before = 0;
+
 
             foreach ($orders[$id1] as $listId => $order1) {
                 if (isset($orders[$id2][$listId])) {
@@ -186,10 +185,8 @@ class Algorithm
 
                                 if (isset($orders[$neighbor1][$listId]) && isset($orders[$id1][$listId])) {
                                     if ($orders[$neighbor1][$listId] > $orders[$id1][$listId]) {
-
                                         $greater1 = true;
                                     } else if ($orders[$neighbor1][$listId] < $orders[$id1][$listId]) {
-
                                         $smaller1 = true;
                                     }
                                 } else if (isset($orders[$neighbor2][$listId]) && isset($orders[$id2][$listId])) {
