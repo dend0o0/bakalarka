@@ -16,15 +16,20 @@ class ShopController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return response()->json($user->shops);
+        $shops = $user->shops()->paginate(6);
+        return response()->json($shops);
     }
 
     /**
      * Ziskanie vsetych obchodov (pre administrativne ucely)
      */
     public function indexAll() {
-        $shops = Shop::all();
-        return response()->json($shops);
+        //if () {
+            $shops = Shop::paginate(10);
+            return response()->json($shops);
+       /* } else {
+            return response()->json(['error' => 'Na toto nemáte oprávnenie'], 401);
+        }*/
     }
 
     /**
@@ -80,8 +85,13 @@ class ShopController extends Controller
      * Uplne odstranenie obchodu z databazy
      */
     public function remove(string $id) {
-        $shop = Shop::find($id);
-        $shop->delete();
-        return response()->json("Obchod bol vymazaný");
+        if (Auth::check() && Auth::id() === 1) {
+            $shop = Shop::find($id);
+            $shop->delete();
+            return response()->json("Obchod bol vymazaný");
+        } else {
+            return response()->json(["error" => "Na toto nemáte oprávnenie"], 401);
+        }
+
     }
 }
