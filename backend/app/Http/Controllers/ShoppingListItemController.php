@@ -12,18 +12,9 @@ use App\AI\CategoriesAssignment;
 
 class ShoppingListItemController extends Controller
 {
-
-    public function index()
-    {
-        //
-        return ShoppingListItem::with('item')->orderBy('checked')->get();
-    }
-
     /**
-     * Store a newly created resource in storage.
+     * Vyhladanie polozky
      */
-
-    // Vyhladanie polozky
     public function search(Request $request) {
         $search = $request->query('q');
         return Item::where('name', 'LIKE', "%{$search}%")->limit(5)->get();
@@ -57,16 +48,9 @@ class ShoppingListItemController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
-     * Update the specified resource in storage.
+     * Zaskrtnutie zakupenej polozky
      */
     public function update(Request $request, ShoppingListItem $item)
     {
@@ -103,7 +87,7 @@ class ShoppingListItemController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Odstranenie polozky zo zoznamu
      */
     public function destroy(string $id)
     {

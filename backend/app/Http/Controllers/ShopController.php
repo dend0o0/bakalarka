@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class ShopController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Ziskanie vsetkych obchodov pouzivatela
      */
     public function index()
     {
@@ -19,12 +19,16 @@ class ShopController extends Controller
         return response()->json($user->shops);
     }
 
+    /**
+     * Ziskanie vsetych obchodov (pre administrativne ucely)
+     */
     public function indexAll() {
         $shops = Shop::all();
         return response()->json($shops);
     }
+
     /**
-     * Store a newly created resource in storage.
+     * Vytvorenie noveho obchodu aj s overenim, ci uz obchod existuje
      */
     public function store(Request $request)
     {
@@ -41,30 +45,18 @@ class ShopController extends Controller
             $user->shops()->attach($shop->id);
         }
         return response()->json($shop, 201);
-
-
-        //
     }
 
     /**
-     * Display the specified resource.
+     * Ziskanie informacii o konkretnom obchode
      */
     public function show(string $id)
     {
         return response()->json(Shop::find($id));
-        //
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * Odstranenie obchodu pre jedneho pouzivatela (nie uplne odstranenie)
      */
     public function destroy(string $id)
     {
@@ -75,11 +67,18 @@ class ShopController extends Controller
         return response()->json("Obchod bol odstránený", 201);
     }
 
+
+    /**
+     * Vyhladanie obchodu podla mena (pre navrhy)
+     */
     public function search(Request $request) {
         $search = $request->query('q');
         return response()->json(Shop::where('name', 'LIKE', "%{$search}%")->limit(5)->get());
     }
 
+    /**
+     * Uplne odstranenie obchodu z databazy
+     */
     public function remove(string $id) {
         $shop = Shop::find($id);
         $shop->delete();
