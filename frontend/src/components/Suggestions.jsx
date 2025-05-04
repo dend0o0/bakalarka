@@ -8,7 +8,7 @@ function Suggestions({ suggestions, onClick }) {
                     {
                         suggestions.map(s => (
                             <li className="shopping-list-item" key={s.id}
-                                onClick={() => onClick(s.name)}>
+                                onClick={() => onClick(s)}>
                                 {s.name}
                             </li>
                         ))}
