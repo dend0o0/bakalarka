@@ -23,7 +23,7 @@ function Admin() {
                 console.error("Dáta sa nenačítali:", error);
                 setErrorMessage("Nebolo možné načítať obchody.");
             });
-    });
+    }, [currentPage]);
 
     const handleDelete = async (id) => {
         try {
