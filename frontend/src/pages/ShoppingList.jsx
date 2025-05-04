@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
 import NewItemForm from "../components/NewItemForm.jsx";
+import MainFrame from "../components/MainFrame.jsx";
 
 
 function ShoppingList() {
@@ -125,7 +126,7 @@ function ShoppingList() {
     return (
         <div>
             <h1>{list?.shop?.name}</h1>
-            <div className={"main-frame"}>
+            <MainFrame>
                 <div className={"list-header"}>
                     <Link to={`/${list.shop_id}`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
                     <button className={"add"} onClick={() => handleSort(list.id)}><i className={"fa fa-sort-amount-asc"}
@@ -136,9 +137,9 @@ function ShoppingList() {
 
                 {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
 
-            </div>
+            </MainFrame>
 
-            <div className={"main-frame"}>
+            <MainFrame>
                 <NewItemForm onSuggestionClick={handleSuggestionClick} newItem={newItem} onSubmit={handleSubmit} onSearch={handleSearch} suggestions={suggestions}/>
                 <ul>
 
@@ -159,7 +160,7 @@ function ShoppingList() {
                     ))}
 
                 </ul>
-            </div>
+            </MainFrame>
 
 
         </div>

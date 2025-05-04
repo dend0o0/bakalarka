@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import AdminButton from "../components/AdminButton.jsx";
 import Pagination from "../components/Pagination.jsx";
+import MainFrame from "../components/MainFrame.jsx";
 
 function Home() {
     const [shops, setShops] = useState([]);
@@ -47,14 +48,14 @@ function Home() {
         <div>
             <h1>Dostupné obchody</h1>
             {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
-            <div className={"main-frame"}>
+            <MainFrame>
                 <button className={"add"} id={"add-shop"}>
                     <Link to={`/add_shop`}>Pridať obchod</Link>
                 </button>
                 <AdminButton></AdminButton>
-            </div>
+            </MainFrame>
 
-            <div className={"main-frame"}>
+            <MainFrame>
                 <div id="shops-container">
                     {shops.data?.map(shop => (
                         <div className="shop" key={shop.id}>
@@ -71,15 +72,15 @@ function Home() {
 
                     ))}
                 </div>
-            </div>
+            </MainFrame>
 
-            <div className={"main-frame"}>
+            <MainFrame>
                 <Pagination
                     currentPage={currentPage}
                     lastPage={lastPage}
                     onPageChange={handlePageChange}
                 />
-            </div>
+            </MainFrame>
 
         </div>
     );

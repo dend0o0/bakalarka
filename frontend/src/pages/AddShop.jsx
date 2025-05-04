@@ -2,6 +2,7 @@ import axios from "axios";
 import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import Suggestions from "../components/Suggestions.jsx";
+import MainFrame from "../components/MainFrame.jsx";
 
 function AddShop() {
     const [suggestions, setSuggestions] = useState([]);
@@ -69,11 +70,11 @@ function AddShop() {
     return (
         <div>
             <h1>Pridať nový obchod</h1>
-            <div className={"main-frame"}>
+            <MainFrame>
                 <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
                 {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-            </div>
-            <div className={"main-frame"}>
+            </MainFrame>
+            <MainFrame>
                 <form onSubmit={handleSubmit}>
                     <input type={"text"} placeholder={"Názov obchodu"} onChange={handleSearch} value={shopName}
                            name={"name"} required={true} /*value={shopName}*//>
@@ -84,14 +85,10 @@ function AddShop() {
                            onChange={(e) => setAddress(e.target.value)} required={true}/>
                     <button type={"submit"} className={"add"}>Pridať obchod</button>
                 </form>
-
-            </div>
-
-
+            </MainFrame>
         </div>
 
 
     )
 }
-
 export default AddShop;

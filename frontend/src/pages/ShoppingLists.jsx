@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {useEffect, useState} from "react";
 import dayjs from "dayjs";
 import Pagination from "../components/Pagination.jsx";
+import MainFrame from "../components/MainFrame.jsx";
 
 
 function ShoppingLists() {
@@ -68,7 +69,7 @@ function ShoppingLists() {
         <div>
             <h1>Nákupné zoznamy</h1>
 
-            <div className={"main-frame"}>
+            <MainFrame>
                 {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
                 <div className={"list-header"}>
                     <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
@@ -76,9 +77,8 @@ function ShoppingLists() {
                         nákupný zoznam
                     </button>
                 </div>
-
-            </div>
-            <div className={"main-frame"}>
+            </MainFrame>
+            <MainFrame>
                 <h2>Predošlé nákupné zoznamy</h2>
                 {shoppingLists.length > 0 ? (
                         <div>
@@ -105,14 +105,14 @@ function ShoppingLists() {
                         <p>Ešte nie sú vytvorené žiadne nákupné zoznamy.</p>
                     )
                 }
-            </div>
-            <div className={"main-frame"}>
+            </MainFrame>
+            <MainFrame>
                 <Pagination
                     currentPage={currentPage}
                     lastPage={lastPage}
                     onPageChange={handlePageChange}
                 />
-            </div>
+            </MainFrame>
 
 
         </div>

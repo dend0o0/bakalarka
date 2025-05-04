@@ -2,6 +2,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import Pagination from "../components/Pagination.jsx";
 import {Link} from "react-router-dom";
+import MainFrame from "../components/MainFrame.jsx";
 
 function Admin() {
     const [shops, setShops] = useState([]);
@@ -46,11 +47,11 @@ function Admin() {
     return (
         <div>
             <h1>Administrácia</h1>
-            <div className={"main-frame"}>
+            <MainFrame>
                 <Link to={`/`}><i className="fa fa-chevron-left" aria-hidden="true"></i> Späť</Link>
                 {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
-            </div>
-            <div className={"main-frame"}>
+            </MainFrame>
+            <MainFrame>
                 <ul>
 
                     {shops.length > 0 && (
@@ -65,14 +66,14 @@ function Admin() {
                     )}
 
                 </ul>
-            </div>
-            <div className={"main-frame"}>
+            </MainFrame>
+            <MainFrame>
                 <Pagination
                     currentPage={currentPage}
                     lastPage={lastPage}
                     onPageChange={handlePageChange}
                 />
-            </div>
+            </MainFrame>
 
 
         </div>
