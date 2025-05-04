@@ -100,10 +100,10 @@ function ShoppingList() {
         }
     };
 
-    const handleSuggestionClick = async (name) => {
+    const handleSuggestionClick = async (s) => {
 
         const response = await axios.post(`/api/item/${id}`, {
-            name: name
+            name: s.name
         });
         setItems([response.data.item, ...items])
         setNewItem("");
