@@ -46,6 +46,7 @@ function AddShop() {
     const handleSearch = async (e) => {
         const query = e.target.value;
         setShopName(query);
+        setIsSuggestionSelected(false);
 
         if (query.length > 1) {
             try {
@@ -79,7 +80,7 @@ function AddShop() {
             <MainFrame>
                 <form onSubmit={handleSubmit}>
                     <input type={"text"} placeholder={"Názov obchodu"} onChange={handleSearch} value={shopName}
-                           name={"name"} required={true} /*value={shopName}*//>
+                           name={"name"} required={true}  /*value={shopName}*//>
                     <Suggestions suggestions={suggestions} onClick={handleSuggestionClick}/>
                     <input type={"text"} placeholder={"Mesto"} value={city} onChange={(e) => setCity(e.target.value)}
                            required={true} disabled={isSuggestionSelected}/>
