@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Item;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,12 +22,12 @@ class ShopController extends Controller
      * Ziskanie vsetych obchodov (pre administrativne ucely)
      */
     public function indexAll() {
-        //if () {
+        if (Auth::id() === 1) {
             $shops = Shop::paginate(10);
             return response()->json($shops);
-       /* } else {
+        } else {
             return response()->json(['error' => 'Na toto nemáte oprávnenie'], 401);
-        }*/
+        }
     }
 
     /**

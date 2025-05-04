@@ -1,6 +1,6 @@
 
 import { useNavigate } from "react-router-dom";
-import {useAuth} from "../context/AuthProvider.jsx";
+import { useAuth } from "../context/AuthProvider.jsx";
 
 function AdminButton() {
     const navigate = useNavigate();

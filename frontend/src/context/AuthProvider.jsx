@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "../api.js";
+import PropTypes from "prop-types";
 
 const AuthContext = createContext();
 
@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
     const login = async (credentials) => {
         try {
             await axios.get("/sanctum/csrf-cookie");
-            const csrfToken = axios.defaults.headers.common['X-CSRF-TOKEN'];
+            //axios.defaults.headers.common['X-CSRF-TOKEN'];
             await axios.post("/api/login", credentials, { withCredentials: true });
             const { data } = await axios.get("/api/user", { withCredentials: true });
             setUser(data);
@@ -53,3 +53,7 @@ export function AuthProvider({ children }) {
 export function useAuth() {
     return useContext(AuthContext);
 }
+
+AuthProvider.propTypes = {
+    children: PropTypes.node,
+};

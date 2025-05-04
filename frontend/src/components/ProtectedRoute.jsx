@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider.jsx";
+import PropTypes from "prop-types";
+import Pagination from "./Pagination.jsx";
 
-// eslint-disable-next-line react/prop-types
+
 const ProtectedRoute = ({ children, adminOnly = false }) => {
     const { user, isLoading } = useAuth();
     const navigate = useNavigate();
@@ -29,3 +31,8 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
 };
 
 export default ProtectedRoute;
+
+ProtectedRoute.propTypes = {
+    children: PropTypes.node.isRequired,
+    adminOnly: PropTypes.bool.isRequired,
+};

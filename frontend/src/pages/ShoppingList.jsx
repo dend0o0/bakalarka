@@ -86,7 +86,7 @@ function ShoppingList() {
     };
     const handleCheckboxChange = async (id, checked, shop_id) => {
         try {
-            const response = await axios.patch(`/api/item/${id}`, { checked: !checked, shop_id, id});
+            await axios.patch(`/api/item/${id}`, { checked: !checked, shop_id, id});
             setItems(prevItems => {
                 return prevItems.map(item =>
                     item.id === id ? { ...item, checked: !checked } : item
