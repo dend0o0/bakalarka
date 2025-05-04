@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
 
-function MainFrame( { children }) {
+function MainFrame( { children}) {
     return (
         <div className="main-frame">
             { children }
         </div>
     );
-
-
 }
 
 export default MainFrame;

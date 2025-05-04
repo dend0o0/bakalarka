@@ -6,6 +6,7 @@ import MainFrame from "../components/MainFrame.jsx";
 
 function AddShop() {
     const [suggestions, setSuggestions] = useState([]);
+    const [isSuggestionSelected, setIsSuggestionSelected] = useState(false);
     const [shopName, setShopName] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
@@ -65,6 +66,7 @@ function AddShop() {
         setCity(s.city);
         setShopName(s.name);
         setSuggestions([]);
+        setIsSuggestionSelected(true);
     }
 
     return (
@@ -80,9 +82,9 @@ function AddShop() {
                            name={"name"} required={true} /*value={shopName}*//>
                     <Suggestions suggestions={suggestions} onClick={handleSuggestionClick}/>
                     <input type={"text"} placeholder={"Mesto"} value={city} onChange={(e) => setCity(e.target.value)}
-                           required={true}/>
-                    <input type={"text"} placeholder={"Adresa"} value={address}
-                           onChange={(e) => setAddress(e.target.value)} required={true}/>
+                           required={true} disabled={isSuggestionSelected}/>
+                    <input type={"text"} placeholder={"Adresa"} value={address} disabled={isSuggestionSelected}
+                           onChange={(e) => setAddress(e.target.value)} required={true} />
                     <button type={"submit"} className={"add"}>Pridať obchod</button>
                 </form>
             </MainFrame>
