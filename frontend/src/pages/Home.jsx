@@ -15,7 +15,7 @@ function Home() {
         axios.get(`/api/shops?page=${currentPage}`)
             .then(response => {
                 console.log("Načítané dáta:", response.data);
-                setShops(response.data);
+                setShops(response.data.data);
                 setCurrentPage(response.data.current_page);
                 setLastPage(response.data.last_page);
                 setErrorMessage("");
@@ -56,10 +56,9 @@ function Home() {
             </MainFrame>
 
             <MainFrame>
-
-                    {shops.data?.length > 0 ? (
+                    {shops.length > 0 ? (
                         <div id={"shops-container"}>
-                            {shops.data?.map(shop => (
+                            {shops.map(shop => (
                                 <div className="shop" key={shop.id}>
                                     <h3>{shop.name}</h3>
                                     <p>{shop.city}, {shop.address}</p>
