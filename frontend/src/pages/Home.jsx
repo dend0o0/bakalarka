@@ -57,7 +57,7 @@ function Home() {
 
             <MainFrame>
 
-                    {shops.length > 0 ? (
+                    {shops.data?.length > 0 ? (
                         <div id={"shops-container"}>
                             {shops.data?.map(shop => (
                                 <div className="shop" key={shop.id}>
