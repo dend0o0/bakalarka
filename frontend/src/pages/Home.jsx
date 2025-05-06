@@ -76,7 +76,7 @@ function Home() {
                         </div>
                     ) : (
                         <div id={"shops-container"}>
-                            <p>Pridajte svoj prvý nákupný zoznam.</p>
+                            <p>Pridajte svoj prvý obchod.</p>
                         </div>
                     )}
 
