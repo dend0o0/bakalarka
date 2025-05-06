@@ -14,7 +14,7 @@ class ShopController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $shops = $user->shops()->paginate(6);
+        $shops = $user->shops()->orderBy('created_at', 'desc')->paginate(6);
         return response()->json($shops);
     }
 
