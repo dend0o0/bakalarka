@@ -56,22 +56,31 @@ function Home() {
             </MainFrame>
 
             <MainFrame>
-                <div id="shops-container">
-                    {shops.data?.map(shop => (
-                        <div className="shop" key={shop.id}>
-                            <h3>{shop.name}</h3>
-                            <p>{shop.city}, {shop.address}</p>
-                            <button className={"add"}>
-                                <Link to={`/${shop.id}`}><i className="fa fa-shopping-cart"
-                                                            aria-hidden="true"></i> Nakupovať</Link>
-                            </button>
-                            <button className={"delete-shop"} onClick={() => handleDelete(shop.id)}>
-                                <i className="fa fa-trash" aria-hidden="true"></i>
-                            </button>
-                        </div>
 
-                    ))}
-                </div>
+                    {shops.length > 0 ? (
+                        <div id={"shops-container"}>
+                            {shops.data?.map(shop => (
+                                <div className="shop" key={shop.id}>
+                                    <h3>{shop.name}</h3>
+                                    <p>{shop.city}, {shop.address}</p>
+                                    <button className={"add"}>
+                                        <Link to={`/${shop.id}`}><i className="fa fa-shopping-cart"
+                                                                    aria-hidden="true"></i> Nakupovať</Link>
+                                    </button>
+                                    <button className={"delete-shop"} onClick={() => handleDelete(shop.id)}>
+                                        <i className="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                            ))}
+                        </div>
+                    ) : (
+                        <div id={"shops-container"}>
+                            <p>Pridajte svoj prvý nákupný zoznam.</p>
+                        </div>
+                    )}
+
+
             </MainFrame>
 
             <MainFrame>

@@ -125,18 +125,12 @@ class Algorithm
                     $order2 = $orders[$id2][$listId];
 
                     if ($order1 > $order2) {
-                        //$countItem1Before++;
                         return true;
                     } elseif ($order1 < $order2) {
                         return false;
-                        //$countItem2Before++;
                     }
                 }
             }
-            /*
-            if ($countItem1Before != 0 || $countItem2Before != 0) {
-                    return $countItem1Before >= $countItem2Before;
-            }*/
             return null;
         }
         return null;
@@ -145,27 +139,12 @@ class Algorithm
 
     private function compareRelative($id1, $id2, $orders)
     {
-        $neighbors1 = [];
-        $neighbors2 = [];
-
         if (!empty($orders[$id1]) && !empty($orders[$id2])) {
             // Hladaju sa spolocne itemy pre prvy item
-            foreach ($orders[$id1] as $listId => $order1) {
-                foreach ($orders as $itemId => $otherOrders) {
-                    if (isset($otherOrders[$listId]) && $otherOrders[$listId] != $order1) {
-                        $neighbors1[] = $itemId;
-                    }
-                }
-            }
+            $neighbors1 = $this->findRelevantItems($id1, $orders);
 
             // Hladaju sa spolocne itemy pre druhy item
-            foreach ($orders[$id2] as $listId => $order2) {
-                foreach ($orders as $itemId => $otherOrders) {
-                    if (isset($otherOrders[$listId]) && $otherOrders[$listId] != $order2) {
-                        $neighbors2[] = $itemId;
-                    }
-                }
-            }
+            $neighbors2 = $this->findRelevantItems($id2, $orders);
 
             // Prechadzame spolocne itemy a zistujeme, ci maju neighbors1 a neighbors2 nejaky spolocny item
             foreach ($neighbors1 as $neighbor1) {
@@ -210,5 +189,19 @@ class Algorithm
             }
         }
         return null;
+    }
+
+    // Hladaju sa polozky, s ktorymi vsetkymi dany predmet zdiela jeden nakupny zoznam.
+    // Pomocna funkcia pre druhu uroven porovnania.
+    private function findRelevantItems($item, $orders) {
+        $neighbors = [];
+        foreach ($orders[$item] as $listId => $order2) {
+            foreach ($orders as $itemId => $otherOrders) {
+                if (isset($otherOrders[$listId]) && $otherOrders[$listId] != $order2) {
+                    $neighbors[] = $itemId;
+                }
+            }
+        }
+        return $neighbors;
     }
 }
