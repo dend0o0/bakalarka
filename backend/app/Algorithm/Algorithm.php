@@ -84,8 +84,8 @@ class Algorithm
         }
 
 
-        // Porovnavanie susedov - skusame najst nejaky tovar, co je susedom s oboma porovnavanymi tovarmi v roznych zoznamoch a na zaklade toho urcime,
-        // ktory by mal ist skor
+        // Porovnavanie relativne, teda skusame porovnat dva predmety na zaklade nejakeho, ktory sa nachádza v zozname
+        // s prvou a druhou polozkou v rozdielnych zoznamoch.
         $result = $this->compareRelative($item1->item_id, $item2->item_id, $historicalOrders);
         if (!is_null($result)) {
             return $result;
