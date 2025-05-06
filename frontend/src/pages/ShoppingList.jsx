@@ -113,7 +113,6 @@ function ShoppingList() {
     const handleSort = async (id) => {
         try {
             const response = await axios.get(`/api/sort/${id}`);
-            console.log("Zoradený zoznam:", response.data.items);
             setItems(response.data.items);
         } catch (error) {
             console.error("Chyba pri zoraďovaní zoznamu:", error);
