@@ -20,7 +20,6 @@ function ShoppingLists() {
     useEffect(() => {
         axios.get(`/api/${shop_id}?page=${currentPage}`)
             .then(response => {
-                console.log("Dáta boli načítane.");
                 setList(response.data.data);
                 setCurrentPage(response.data.current_page);
                 setLastPage(response.data.last_page);
@@ -41,7 +40,6 @@ function ShoppingLists() {
     const handleNewList = async () => {
         try {
             const response = await axios.post(`/api/${shop_id}`);
-            console.log(response.data);
             const newListId = response.data.shopping_list.id;
             navigate(`/list/${newListId}`);
             setErrorMessage("");

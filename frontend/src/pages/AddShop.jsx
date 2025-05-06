@@ -25,14 +25,12 @@ function AddShop() {
                 return;
             }
 
-            const response = await axios.post(`/api/shop`, {
+            await axios.post(`/api/shop`, {
                 name: shopName,
                 city: city,
                 address: address,
             });
 
-
-            console.log("Pridaná položka:", response.data);
             setSuggestions([]);
             setShopName("");
             setErrorMessage("");
@@ -51,7 +49,6 @@ function AddShop() {
         if (query.length > 1) {
             try {
                 const response = await axios.get(`/api/searchShop?q=${query}`);
-                console.log(response.data);
                 setSuggestions([...response.data]);
             } catch (error) {
                 console.error("Nastala chyba pri získaní návrhov:", error);

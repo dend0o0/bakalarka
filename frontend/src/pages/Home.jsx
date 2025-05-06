@@ -14,7 +14,6 @@ function Home() {
     useEffect(() => {
         axios.get(`/api/shops?page=${currentPage}`)
             .then(response => {
-                console.log("Načítané dáta:", response.data);
                 setShops(response.data.data);
                 setCurrentPage(response.data.current_page);
                 setLastPage(response.data.last_page);

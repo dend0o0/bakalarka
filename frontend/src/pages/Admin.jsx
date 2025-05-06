@@ -13,7 +13,6 @@ function Admin() {
     useEffect(() => {
         axios.get(`/api/shopsAdmin?page=${currentPage}`)
             .then(response => {
-                console.log("Načítané dáta:", response.data);
                 setShops(response.data.data);
                 setErrorMessage("");
                 setCurrentPage(response.data.current_page);
