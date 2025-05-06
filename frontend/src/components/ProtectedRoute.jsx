@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider.jsx";
 import PropTypes from "prop-types";
-import Pagination from "./Pagination.jsx";
 
 
 const ProtectedRoute = ({ children, adminOnly = false }) => {

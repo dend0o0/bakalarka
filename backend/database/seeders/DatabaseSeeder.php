@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
         ItemCategory::factory()->createCategory("Sladené a ochutené nápoje/šťavy")->create();
         ItemCategory::factory()->createCategory("Minerálne nápoje")->create();
         ItemCategory::factory()->createCategory("Alkohol")->create();
+        ItemCategory::factory()->createCategory("Mrazené výrobky")->create();
         ItemCategory::factory()->createCategory("Iné")->create();
 
         User::factory()->createUser('denis', 'denis@example.com', bcrypt('heslo123'))->create();
